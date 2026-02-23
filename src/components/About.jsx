@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 
 const About = () => {
     const stats = [
-        { label: 'Certifications', val: '20+' },
-        { label: 'Projects', val: '10+' },
+        { label: 'Certifications', val: '27+' },
+        { label: 'Projects', val: '12+' },
         { label: 'Passion', val: '100%' },
     ]
 
@@ -19,9 +19,8 @@ const About = () => {
                 >
                     <h2 className="text-sm uppercase tracking-widest font-bold mb-6">About Me</h2>
                     <p className="text-4xl md:text-5xl font-medium leading-tight">
-                        I'm a Full-Stack Developer with a background in Electronics & Telecommunication.
-                        I love building things that live on the internet, whether that be websites,
-                        applications, or anything in between.
+                        I'm a Software Developer specialized in Flutter and MERN stack, currently pursuing my M.Sc. in IT.
+                        I love building clean, efficient, and user-centric digital solutions.
                     </p>
                 </motion.div>
 
