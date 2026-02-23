@@ -5,19 +5,19 @@ import { Code2, Database, Layout, Figma, Terminal, Cpu } from 'lucide-react'
 const TechStack = () => {
     const categories = [
         {
-            title: "Frontend",
+            title: "Development",
             icon: <Layout className="text-accent-primary" size={24} />,
-            skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Three.js", "Framer Motion"]
+            skills: ["Flutter", "React", "Next.js", "Java", "Python", "PHP", "C/C++", "JavaScript"]
         },
         {
-            title: "Backend",
+            title: "Infrastructure",
             icon: <Database className="text-accent-primary" size={24} />,
-            skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Firebase", "REST APIs"]
+            skills: ["Node.js", "Express", "MongoDB", "Firebase", "SQL", "REST APIs", "Docker"]
         },
         {
             title: "Tools & Design",
             icon: <Figma className="text-accent-primary" size={24} />,
-            skills: ["Git", "Docker", "AWS", "Figma", "Adobe CC", "Postman"]
+            skills: ["Git", "GitHub", "Figma", "VS Code", "Android Studio", "Arduino", "Linux"]
         }
     ]
 
