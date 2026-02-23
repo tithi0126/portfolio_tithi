@@ -4,9 +4,9 @@ import { Music, Play, Mic2 } from 'lucide-react'
 
 const Hobby = () => {
     const songs = [
-        { title: 'Classical Rendition', type: 'Vocal', duration: '3:45' },
-        { title: 'Melodic Journey', type: 'Semi-Classical', duration: '4:20' },
-        { title: 'Soulful Tune', type: 'Bollywood Classical', duration: '3:15' },
+        { title: 'Aaj Din Chadheya', type: 'Vocal Performance', duration: '3:45' },
+        { title: 'Kaun Tujhe', type: 'Melodic Rendition', duration: '4:20' },
+        { title: 'Raabta', type: 'Acoustic Cover', duration: '3:15' },
     ]
 
     return (
