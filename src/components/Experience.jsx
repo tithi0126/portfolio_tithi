@@ -4,24 +4,24 @@ import { motion } from 'framer-motion'
 const Experience = () => {
     const experiences = [
         {
+            company: "Pragma Infotech",
+            role: "Software Developer",
+            period: "June 2024 - Feb 2025",
+            description: "Developed and maintained 5+ web applications using PHP, Flutter, and JavaScript. Improved application performance by 30% through optimization.",
+            color: "#e4ff00"
+        },
+        {
+            company: "e-Yantra",
+            role: "Regional Finalist (IIT Bombay)",
+            period: "2023 - 2024",
+            description: "Led the development of an AI-powered agricultural solution, focusing on robotics and machine learning integrations.",
+            color: "#ffffff"
+        },
+        {
             company: "Aangan Developers",
             role: "Full-Stack Developer",
             period: "2023 - Present",
             description: "Leading the development of high-performance web applications and internal tools using React and Node.js.",
-            color: "#e4ff00"
-        },
-        {
-            company: "Tech Mahindra",
-            role: "Software Engineer",
-            period: "2021 - 2023",
-            description: "Worked on enterprise-scale solutions, focused on frontend architecture and performance optimization.",
-            color: "#ffffff"
-        },
-        {
-            company: "Digital Edge",
-            role: "Web Intern",
-            period: "2021",
-            description: "Assisted in building responsive websites and specialized UI components for client projects.",
             color: "#4B91F7"
         }
     ]
