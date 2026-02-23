@@ -102,31 +102,31 @@ const Works = () => {
     const projects = [
         {
             title: 'RootOut',
-            category: 'Agri-Tech Solutions',
+            category: 'AI Weed Cutter • 92% Accuracy',
             video: '/pitch_rootout.mp4',
             type: 'macbook',
             color: '#e4ff00',
             url: 'https://rootout.in'
         },
         {
-            title: 'InnerVoice',
-            category: 'Healthcare AI',
-            image: '/inner_voice_logo.png',
-            type: 'macbook',
+            title: 'Rowan Decor',
+            category: 'Flutter • e-Commerce App',
+            image: '/RowanDecor_Logo.jpg',
+            type: 'iphone',
             color: '#ffffff',
             url: '#'
         },
         {
-            title: 'FinologyX',
-            category: 'FinTech Platform',
-            image: '/Finology_logo.png',
-            type: 'iphone',
+            title: 'The Cheelaya',
+            category: 'MERN • Business Platform',
+            image: '/thecheelaya1.png',
+            type: 'macbook',
             color: '#4B91F7',
-            url: 'https://finologyx.com'
+            url: '#'
         },
         {
             title: 'Borana Weaves',
-            category: 'Luxury E-Commerce',
+            category: 'PHP • Luxury E-Commerce',
             image: '/borana-weaves-logo.png',
             type: 'macbook',
             color: '#D4AF37',
