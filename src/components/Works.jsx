@@ -101,6 +101,22 @@ const ProjectCard = ({ project }) => {
 const Works = () => {
     const projects = [
         {
+            title: 'Aangan Developers',
+            category: 'Software Agency • Custom Web Solutions',
+            image: '/projects/aangan.png',
+            type: 'macbook',
+            color: '#FF6B6B',
+            url: 'https://aangandevelopers.com/'
+        },
+        {
+            title: 'FinoLogyX',
+            category: 'FinTech • Multi-Calculator App',
+            image: '/projects/finologyx.png',
+            type: 'iphone',
+            color: '#4B91F7',
+            url: 'https://play.google.com/store/apps/details?id=com.app.finologyx'
+        },
+        {
             title: 'RootOut',
             category: 'AI Weed Cutter • 92% Accuracy',
             video: '/pitch_rootout.mp4',
@@ -109,20 +125,52 @@ const Works = () => {
             url: 'https://rootout.in'
         },
         {
-            title: 'Rowan Decor',
-            category: 'Flutter • e-Commerce App',
-            image: '/RowanDecor_Logo.jpg',
-            type: 'iphone',
-            color: '#ffffff',
-            url: '#'
+            title: 'Design Formula Studio',
+            category: 'Architecture & Interior Design',
+            image: '/projects/designformula.png',
+            type: 'macbook',
+            color: '#D4AF37',
+            url: 'https://designformulastudio.com/'
         },
         {
-            title: 'The Cheelaya',
-            category: 'MERN • Business Platform',
-            image: '/thecheelaya1.png',
+            title: 'Meraki Coffee House',
+            category: 'E-Commerce • Cafe & Lifestyle',
+            image: '/projects/meraki.png',
             type: 'macbook',
-            color: '#4B91F7',
-            url: '#'
+            color: '#6F4E37',
+            url: 'https://meraki.aangandevelopers.com/'
+        },
+        {
+            title: 'PNC Nutrition Care',
+            category: 'Healthcare • Clinical Nutrition',
+            image: '/projects/priyam.png',
+            type: 'macbook',
+            color: '#2ECC71',
+            url: 'https://pncpriyamnutritioncare.com/'
+        },
+        {
+            title: 'Kalanjay Gifts',
+            category: 'E-Commerce • Personalized Gifting',
+            image: '/projects/kalanjay.png',
+            type: 'macbook',
+            color: '#9B59B6',
+            url: 'https://kalanjay.aangandevelopers.com/'
+        },
+        {
+            title: 'Achyutam Fruitam',
+            category: 'Food & Beverage • Dessert Shop',
+            image: '/projects/achyutam.png',
+            type: 'macbook',
+            color: '#F1C40F',
+            url: 'https://achyutamfruitam.aangandevelopers.com/'
+        },
+        {
+            title: 'Bazaar Branding',
+            category: 'Agency • Branding & Marketing',
+            image: '/projects/bazaar.png',
+            type: 'macbook',
+            color: '#E67E22',
+            url: 'https://bazaar-branding.onrender.com/'
         },
         {
             title: 'Borana Weaves',
