@@ -1,79 +1,74 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Music, Play, Mic2 } from 'lucide-react'
+import { Mic2, Play, Music, Pause } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import Magnetic from './Magnetic'
+import useSoundStore from '../store/useSoundStore'
 
 const Hobby = () => {
-    const songs = [
-        { title: 'Aaj Din Chadheya', type: 'Vocal Performance', duration: '3:45' },
-        { title: 'Kaun Tujhe', type: 'Melodic Rendition', duration: '4:20' },
-        { title: 'Raabta', type: 'Acoustic Cover', duration: '3:15' },
-    ]
+    const navigate = useNavigate()
+    const { playlist, currentSong, isPlaying, playSong, togglePlay } = useSoundStore()
+
+    // Show top 3 featured songs in the section
+    const featuredSongs = playlist.slice(0, 3)
 
     return (
-        <section id="singing" className="section-padding bg-accent-primary text-background-dark overflow-hidden relative">
-            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-                <Mic2 size={400} />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+        <section id="singing" className="section-padding bg-background-light text-background-dark">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <motion.div
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1 }}
+                    className="space-y-8"
                 >
-                    <div className="flex items-center gap-4 mb-8">
-                        <div className="w-12 h-[1px] bg-background-dark" />
-                        <span className="text-xs uppercase tracking-[0.4em] font-bold">Beyond the Code</span>
+                    <div>
+                        <h2 className="text-xs uppercase tracking-[0.5em] font-bold mb-6 opacity-40">Creative Soul</h2>
+                        <h3 className="heading-xl">VOCAL<br />SOLACE.</h3>
                     </div>
-                    <h3 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-12 italic">
-                        SINGING IS MY<br />SOUL'S LANGUAGE
-                    </h3>
-                    <p className="text-2xl font-medium leading-relaxed mb-12 opacity-80">
-                        Music is the harmony that balances my technical pursuits. Specialized in classical
-                        and semi-classical vocals, I find expression through melodies.
+
+                    <p className="text-xl text-background-dark/60 leading-relaxed max-w-lg">
+                        Beyond the lines of code, I find my rhythm in music. Classical training has taught me the patience and precision that I now bring to every project I build.
                     </p>
-                    <div className="flex gap-4">
-                        <div className="px-6 py-3 rounded-full border border-background-dark/20 text-sm font-bold uppercase tracking-widest">Vocalist</div>
-                        <div className="px-6 py-3 rounded-full border border-background-dark/20 text-sm font-bold uppercase tracking-widest">Classical</div>
-                    </div>
+
+                    <Magnetic>
+                        <button
+                            onClick={() => navigate('/playlist')}
+                            className="btn-primary group flex items-center gap-3"
+                        >
+                            <Mic2 size={20} className="group-hover:rotate-12 transition-transform" />
+                            Launch Full Playlist
+                        </button>
+                    </Magnetic>
                 </motion.div>
 
-                <motion.div
-                    initial={{ x: 100, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1 }}
-                    className="bg-background-dark/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-background-dark/10"
-                >
-                    <h4 className="text-2xl font-bold tracking-tight mb-8">Recents Recordings</h4>
-                    <div className="flex flex-col gap-4">
-                        {songs.map((song, i) => (
-                            <div key={song.title} className="group flex items-center justify-between p-6 rounded-2xl hover:bg-background-dark hover:text-white transition-all cursor-pointer">
+                <div className="space-y-6">
+                    {featuredSongs.map((song, i) => {
+                        const isCurrent = currentSong?.file === song.file;
+                        return (
+                            <motion.div
+                                key={song.title}
+                                initial={{ y: 50, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                onClick={() => isCurrent ? togglePlay() : playSong(song)}
+                                className={`group p-8 rounded-[2rem] border transition-all duration-500 cursor-pointer flex items-center justify-between ${isCurrent ? 'bg-accent-primary border-accent-primary' : 'bg-white border-black/5 hover:border-accent-primary/30'}`}
+                            >
                                 <div className="flex items-center gap-6">
-                                    <div className="w-12 h-12 rounded-full bg-background-dark/10 group-hover:bg-accent-primary flex items-center justify-center transition-colors">
-                                        <Play size={20} className="fill-current text-white group-hover:text-background-dark" />
+                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-colors ${isCurrent ? 'bg-background-dark text-accent-primary' : 'bg-background-light group-hover:bg-accent-primary group-hover:text-background-dark'}`}>
+                                        <Music size={24} />
                                     </div>
                                     <div>
-                                        <div className="font-bold text-lg">{song.title}</div>
-                                        <div className="text-xs uppercase tracking-widest opacity-60 group-hover:opacity-80">{song.type}</div>
+                                        <h4 className="text-xl font-bold tracking-tight">{song.title}</h4>
+                                        <p className="text-xs uppercase tracking-widest font-bold opacity-30">{song.artist}</p>
                                     </div>
                                 </div>
-                                <div className="text-sm font-mono opacity-40 group-hover:opacity-60">{song.duration}</div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <button className="w-full mt-12 py-5 rounded-full bg-background-dark text-white font-bold uppercase tracking-[0.2em] text-xs hover:scale-[1.02] transition-transform">
-                        Open Full Playlist
-                    </button>
-                </motion.div>
-            </div>
-
-            {/* Decorative Text */}
-            <div className="absolute -bottom-12 left-0 w-full opacity-10 pointer-events-none select-none">
-                <div className="text-[15rem] font-bold whitespace-nowrap leading-none tracking-tighter italic">
-                    MELODY HARMONY RHYTHM VOX
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${isCurrent ? 'bg-background-dark text-white' : 'bg-black/5 group-hover:bg-accent-primary group-hover:text-background-dark'}`}>
+                                    {isCurrent && isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" className="ml-0.5" />}
+                                </div>
+                            </motion.div>
+                        )
+                    })}
                 </div>
             </div>
         </section>
