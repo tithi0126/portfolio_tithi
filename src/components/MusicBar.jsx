@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, ListMusic } from 'lucide-react'
 import useSoundStore from '../store/useSoundStore'
@@ -13,11 +13,44 @@ const MusicBar = () => {
         prevSong,
         isMuted,
         setIsMuted,
-        audio
+        audio,
+        progress,
+        setProgress,
+        resetProgress
     } = useSoundStore()
     const navigate = useNavigate()
     const location = useLocation()
     const progressBarRef = useRef(null)
+    const [duration, setDuration] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
+
+    useEffect(() => {
+        if (!audio) return
+
+        const handleTimeUpdate = () => {
+            setCurrentTime(audio.currentTime)
+            setProgress((audio.currentTime / audio.duration) * 100)
+        }
+
+        const handleDurationChange = () => {
+            setDuration(audio.duration)
+        }
+
+        const handleSongEnd = () => {
+            resetProgress()
+            setCurrentTime(0)
+        }
+
+        audio.addEventListener('timeupdate', handleTimeUpdate)
+        audio.addEventListener('durationchange', handleDurationChange)
+        audio.addEventListener('ended', handleSongEnd)
+
+        return () => {
+            audio.removeEventListener('timeupdate', handleTimeUpdate)
+            audio.removeEventListener('durationchange', handleDurationChange)
+            audio.removeEventListener('ended', handleSongEnd)
+        }
+    }, [audio, setProgress, resetProgress])
 
     if (!currentSong) return null
 
@@ -27,13 +60,13 @@ const MusicBar = () => {
             animate={{ y: 0, opacity: 1 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-4xl"
         >
-            <div className="glass-card bg-background-dark/80 backdrop-blur-2xl border border-white/10 p-4 md:p-6 flex items-center justify-between gap-6 shadow-2xl overflow-hidden relative">
-                {/* Progress Bar (Simulated UI for now as actual time tracking needs more state) */}
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-white/5">
+            <div className="glass-card bg-background-dark/80 backdrop-blur-2xl border border-pearl/10 p-4 md:p-6 flex items-center justify-between gap-6 shadow-2xl overflow-hidden relative">
+                {/* Progress Bar */}
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-pearl/5">
                     <motion.div
                         className="h-full bg-accent-primary"
-                        animate={{ width: isPlaying ? "100%" : "0%" }}
-                        transition={{ duration: 180, ease: "linear" }} // Mock progress for a 3min song
+                        animate={{ width: `${progress}%` }}
+                        transition={{ duration: 0.1, ease: "linear" }}
                     />
                 </div>
 
@@ -44,24 +77,24 @@ const MusicBar = () => {
                     </div>
                     <div className="overflow-hidden">
                         <h4 className="font-bold text-sm truncate uppercase tracking-tight">{currentSong.title}</h4>
-                        <p className="text-[10px] uppercase tracking-widest text-white/40">{currentSong.artist}</p>
+                        <p className="text-[10px] uppercase tracking-widest text-pearl/40">{currentSong.artist}</p>
                     </div>
                 </div>
 
                 {/* Controls */}
                 <div className="flex items-center gap-4 md:gap-8">
-                    <button onClick={prevSong} className="text-white/40 hover:text-white transition-colors">
+                    <button onClick={prevSong} className="text-pearl/40 hover:text-pearl transition-colors">
                         <SkipBack size={20} />
                     </button>
 
                     <button
                         onClick={togglePlay}
-                        className="w-12 h-12 rounded-full bg-white text-background-dark flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
+                        className="w-12 h-12 rounded-full bg-pearl text-background-dark flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
                     >
                         {isPlaying ? <Pause size={24} className="fill-current" /> : <Play size={24} className="fill-current ml-1" />}
                     </button>
 
-                    <button onClick={nextSong} className="text-white/40 hover:text-white transition-colors">
+                    <button onClick={nextSong} className="text-pearl/40 hover:text-pearl transition-colors">
                         <SkipForward size={20} />
                     </button>
                 </div>
@@ -70,14 +103,14 @@ const MusicBar = () => {
                 <div className="flex items-center gap-4 md:gap-6 min-w-[80px] justify-end">
                     <button
                         onClick={() => setIsMuted(!isMuted)}
-                        className="text-white/40 hover:text-white transition-colors"
+                        className="text-pearl/40 hover:text-pearl transition-colors"
                     >
                         {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                     </button>
 
                     <button
                         onClick={() => location.pathname === '/playlist' ? navigate('/') : navigate('/playlist')}
-                        className={`p-2 rounded-lg transition-all ${location.pathname === '/playlist' ? 'bg-accent-primary text-background-dark' : 'text-white/40 hover:text-white'}`}
+                        className={`p-2 rounded-lg transition-all ${location.pathname === '/playlist' ? 'bg-accent-primary text-background-dark' : 'text-pearl/40 hover:text-pearl'}`}
                     >
                         <ListMusic size={20} />
                     </button>

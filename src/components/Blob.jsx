@@ -16,7 +16,7 @@ const BlobMesh = () => {
     return (
         <Sphere ref={meshRef} args={[1, 100, 100]} scale={1.5}>
             <MeshDistortMaterial
-                color="#e4ff00"
+                color="#536878"
                 attach="material"
                 distort={0.4}
                 speed={2}

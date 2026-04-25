@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import gsap from 'gsap'
@@ -8,6 +9,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
 import TechStack from './components/TechStack'
+import ProjectDetail from './components/ProjectDetail'
 import Certifications from './components/Certifications'
 import Works from './components/Works'
 import Hobby from './components/Hobby'
@@ -15,6 +17,7 @@ import Contact from './components/Contact'
 import CustomCursor from './components/CustomCursor'
 import Loader from './components/Loader'
 import MusicBar from './components/MusicBar'
+import { Toaster } from 'react-hot-toast'
 import Playlist from './components/Playlist'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -34,41 +37,28 @@ const Home = () => {
 
         requestAnimationFrame(raf)
 
-        // Sections background color transition
-        const sections = document.querySelectorAll('section[data-color]')
-        sections.forEach((section) => {
-            const color = section.getAttribute('data-color')
-            ScrollTrigger.create({
-                trigger: section,
-                start: 'top 50%',
-                end: 'bottom 50%',
-                onEnter: () => gsap.to('body', { backgroundColor: color, duration: 1 }),
-                onEnterBack: () => gsap.to('body', { backgroundColor: color, duration: 1 }),
-            })
-        })
-
         return () => {
             lenis.destroy()
-            ScrollTrigger.getAll().forEach(t => t.kill())
         }
     }, [])
 
     return (
         <main className="relative">
             <Hero />
-            <section data-color="#0F0F0F" id="about"><About /></section>
-            <section data-color="#F5F5F7" id="experience"><Experience /></section>
-            <section data-color="#0F0F0F" id="certifications"><Certifications /></section>
-            <section data-color="#F5F5F7" id="works"><Works /></section>
-            <section data-color="#0F0F0F" id="tech-stack"><TechStack /></section>
-            <section data-color="#F5F5F7" id="singing"><Hobby /></section>
-            <section data-color="#0F0F0F" id="contact"><Contact /></section>
+            <About />
+            <Experience />
+            <Works />
+            <TechStack />
+            <Certifications />
+            <Hobby />
+            <Contact />
         </main>
     )
 }
 
 const AppContent = () => {
     const [loading, setLoading] = useState(true)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const location = useLocation()
 
     useEffect(() => {
@@ -86,17 +76,35 @@ const AppContent = () => {
     }, [location])
 
     return (
-        <div className="bg-background-dark text-white min-h-screen selection:bg-accent-primary selection:text-background-dark">
-            {loading && <Loader onComplete={() => setLoading(false)} />}
-            <CustomCursor />
-            <Navbar />
+        <div 
+            className="text-paynes bg-pearl min-h-screen selection:bg-paynes selection:text-pearl"
+        >
+            <Toaster position="bottom-right" toastOptions={{ style: { background: '#536878', color: '#EAE0C8', fontSize: '12px', fontWeight: 'bold', borderRadius: '15px' } }} />
+            <AnimatePresence mode="wait">
+                {loading && <Loader key="loader" onComplete={() => setLoading(false)} />}
+            </AnimatePresence>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/playlist" element={<Playlist />} />
-            </Routes>
+            {!loading && (
+                <>
+                    <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: isMenuOpen ? 0 : 1 }}
+                        transition={{ duration: 0.5 }}
+                        className={isMenuOpen ? 'pointer-events-none' : ''}
+                    >
+                        <CustomCursor />
 
-            <MusicBar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/project/:id" element={<ProjectDetail />} />
+                            <Route path="/playlist" element={<Playlist />} />
+                        </Routes>
+
+                        <MusicBar />
+                    </motion.div>
+                </>
+            )}
         </div>
     )
 }

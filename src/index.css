@@ -1,15 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --parallax-speed: 20s;
+  --color-paynes-grey: #536878;
+  --color-pearl: #EAE0C8;
+  --paynes-rgb: 83 104 120;
+  --pearl-rgb: 234 224 200;
+  --bg-dark: #536878;
+  --bg-light: #EAE0C8;
+  --accent-primary: #536878;
+  --accent-secondary: #EAE0C8;
 }
 
 @layer base {
   body {
-    @apply bg-background-dark text-white font-sans overflow-x-hidden transition-colors duration-700;
+    background-color: #EAE0C8 !important;
+    color: #536878 !important;
+    @apply font-sans transition-colors duration-1000;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none;
   }
 
   /* Smooth scroll support */
@@ -36,7 +50,11 @@
 
 @layer components {
   .section-padding {
-    @apply py-24 px-6 md:px-12 lg:px-24;
+    @apply py-24 px-6 md:px-12 lg:px-24 xl:px-32;
+  }
+
+  .hero-heading {
+    @apply text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase;
   }
 
   .heading-xl {
@@ -44,7 +62,26 @@
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl;
+    background-color: rgba(83, 104, 120, 0.05);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(83, 104, 120, 0.1);
+    border-radius: 2rem;
+    transition: all 500ms;
+  }
+
+  .glass-card:hover {
+    background-color: rgba(83, 104, 120, 0.1);
+    border-color: rgba(83, 104, 120, 0.2);
+  }
+
+  .btn-primary {
+    @apply px-8 py-4 rounded-full font-semibold uppercase tracking-widest text-xs transition-transform hover:scale-105 active:scale-95;
+    background-color: #536878;
+    color: #EAE0C8;
+  }
+
+  .text-reveal-container {
+    @apply overflow-hidden block;
   }
 }
 
@@ -54,7 +91,7 @@
     inset: -200%;
     z-index: 9999;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.08;
+    opacity: 0.05;
     pointer-events: none;
     animation: noise 2s steps(10) infinite;
   }
@@ -108,17 +145,34 @@
   .perspective-1000 {
     perspective: 1000px;
   }
+
+  .bg-grid-pearl {
+    background-image: radial-gradient(rgba(234, 224, 200, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
 }
 
-/* Custom Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background-dark;
+  background: var(--color-pearl);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/20 rounded-full hover:bg-white/40 transition-colors;
+  background: rgba(83, 104, 120, 0.1);
+  border-radius: 9999px;
+  transition: background 300ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(83, 104, 120, 0.3);
+}
+
+/* Custom selection */
+::selection {
+  background-color: var(--color-paynes-grey);
+  color: var(--color-pearl);
 }

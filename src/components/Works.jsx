@@ -1,205 +1,212 @@
-import React from 'react'
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
-import DeviceMockup from './DeviceMockup'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Magnetic from './Magnetic'
+import { ArrowUpRight } from 'lucide-react'
 
-const ProjectCard = ({ project }) => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
+const ProjectCard = ({ project, index }) => {
+    const cardRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ["start end", "end start"]
+    })
 
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
-
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
+    const y = useTransform(scrollYProgress, [0, 1], [0, -50])
+    const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1.05])
 
     return (
-        <Magnetic>
-            <motion.div
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                    rotateX,
-                    rotateY,
-                    transformStyle: "preserve-3d",
-                }}
-                initial={{ y: 100, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                className="group cursor-pointer relative"
+        <Link 
+            to={`/project/${project.slug}`}
+            className="group block"
+        >
+            <motion.div 
+                ref={cardRef}
+                style={{ scale }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
+                className="flex flex-col gap-8 w-full"
             >
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                    <div
-                        style={{ transform: "translateZ(50px)" }}
-                        className="mb-10 transform transition-transform duration-700"
+                {/* Image Container */}
+                <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden relative bg-paynes/5 border border-paynes/5 flex items-center justify-center">
+                    <motion.div 
+                        style={{ y }}
+                        className="absolute inset-0 w-full h-[120%]"
                     >
-                        <DeviceMockup type={project.type}>
-                            {project.video ? (
-                                <video
-                                    src={project.video}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                />
-                            ) : (
-                                <div
-                                    className="w-full h-full flex items-center justify-center p-12"
-                                    style={{ backgroundColor: `${project.color}10` }}
-                                >
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="max-w-[60%] max-h-[60%] object-contain"
-                                    />
-                                </div>
-                            )}
-                        </DeviceMockup>
+                        {project.video ? (
+                            <video 
+                                src={project.video} 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline 
+                                className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 bg-paynes/[0.02]"
+                            />
+                        ) : (
+                            <div className="flex flex-col items-center justify-center w-full h-full gap-6">
+                                 <div className="w-24 h-24 rounded-full border border-paynes/10 flex items-center justify-center p-4 bg-pearl/50 backdrop-blur-sm">
+                                    <img src={project.logo} alt={project.title} className="w-full h-full object-contain opacity-40 group-hover:opacity-100 transition-opacity" />
+                                 </div>
+                            </div>
+                        )}
+                    </motion.div>
+                    
+                    <div className="absolute top-6 left-6 flex gap-2">
+                        {project.tags?.slice(0, 2).map(tag => (
+                            <span key={tag} className="px-3 py-1 rounded-full bg-pearl/90 backdrop-blur-sm text-paynes text-[8px] font-bold uppercase tracking-widest border border-paynes/5">
+                                {tag}
+                            </span>
+                        ))}
                     </div>
 
-                    <div
-                        style={{ transform: "translateZ(30px)" }}
-                        className="flex justify-between items-start"
-                    >
-                        <div>
-                            <h4 className="text-4xl font-bold tracking-tight mb-2 group-hover:text-accent-primary transition-colors">
-                                {project.title}
-                            </h4>
-                            <p className="text-sm opacity-40 uppercase tracking-[0.2em] font-medium">
-                                {project.category}
-                            </p>
-                        </div>
-                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-background-dark transition-all duration-500">
-                            <span className="text-xl">↗</span>
+                    <div className="absolute inset-0 bg-paynes/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-pearl text-paynes flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500">
+                            <ArrowUpRight size={24} />
                         </div>
                     </div>
-                </a>
+                </div>
+
+                {/* Info Container */}
+                <div className="flex flex-col">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-3xl font-display font-medium group-hover:italic transition-all">
+                            {project.title}
+                        </h3>
+                        <span className="text-[10px] font-bold opacity-20 uppercase tracking-widest">0{index + 1}</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-6 text-paynes/40 font-mono text-[10px] uppercase tracking-widest">
+                        <span>{project.category}</span>
+                        <div className="h-px flex-1 bg-paynes/5" />
+                    </div>
+                </div>
             </motion.div>
-        </Magnetic>
-    );
-};
+        </Link>
+    )
+}
 
 const Works = () => {
     const projects = [
         {
+            slug: 'innervoice',
+            title: 'InnerVoice',
+            category: 'Mental Health AI',
+            tags: ['React', 'ASP.NET', 'SignalR'],
+            logo: '/inner_voice_logo.png',
+        },
+        {
+            slug: 'aangan-developers',
             title: 'Aangan Developers',
-            category: 'Software Agency • Custom Web Solutions',
-            image: '/projects/aangan.png',
-            type: 'macbook',
-            color: '#FF6B6B',
-            url: 'https://aangandevelopers.com/'
+            category: 'Software Agency',
+            tags: ['React', 'Node.js', 'Vite'],
+            logo: '/projects/aangan.png',
+            video: '/videos/aangan.mov',
         },
         {
+            slug: 'finologyx',
             title: 'FinoLogyX',
-            category: 'FinTech • Multi-Calculator App',
-            image: '/projects/finologyx.png',
-            type: 'iphone',
-            color: '#4B91F7',
-            url: 'https://play.google.com/store/apps/details?id=com.app.finologyx'
+            category: 'FinTech Platform',
+            tags: ['Flutter', 'MVC', 'API'],
+            logo: '/Finology_logo.png',
         },
         {
+            slug: 'rootout',
             title: 'RootOut',
-            category: 'AI Weed Cutter • 92% Accuracy',
+            category: 'Agri-Tech AI',
+            tags: ['AI/ML', 'Agriculture', 'IoT'],
+            logo: '/RootOut_Logo.png',
             video: '/pitch_rootout.mp4',
-            type: 'macbook',
-            color: '#e4ff00',
-            url: 'https://rootout.in'
         },
         {
+            slug: 'design-formula',
             title: 'Design Formula Studio',
-            category: 'Architecture & Interior Design',
-            image: '/projects/designformula.png',
-            type: 'macbook',
-            color: '#D4AF37',
-            url: 'https://designformulastudio.com/'
+            category: 'Architecture Studio',
+            tags: ['Portfolio', 'UX', 'Typography'],
+            logo: '/projects/designformula.png',
+            video: '/videos/design.mov',
         },
         {
+            slug: 'meraki-coffee',
             title: 'Meraki Coffee House',
-            category: 'E-Commerce • Cafe & Lifestyle',
-            image: '/projects/meraki.png',
-            type: 'macbook',
-            color: '#6F4E37',
-            url: 'https://meraki.aangandevelopers.com/'
+            category: 'Lifestyle & Cafe',
+            tags: ['Branding', 'Mobile-First', 'Maps'],
+            logo: '/projects/meraki.png',
+            video: '/videos/meraki.mov',
         },
         {
-            title: 'PNC Nutrition Care',
-            category: 'Healthcare • Clinical Nutrition',
-            image: '/projects/priyam.png',
-            type: 'macbook',
-            color: '#2ECC71',
-            url: 'https://pncpriyamnutritioncare.com/'
-        },
-        {
-            title: 'Kalanjay Gifts',
-            category: 'E-Commerce • Personalized Gifting',
-            image: '/projects/kalanjay.png',
-            type: 'macbook',
-            color: '#9B59B6',
-            url: 'https://kalanjay.aangandevelopers.com/'
-        },
-        {
+            slug: 'achyutam-fruitam',
             title: 'Achyutam Fruitam',
-            category: 'Food & Beverage • Dessert Shop',
-            image: '/projects/achyutam.png',
-            type: 'macbook',
-            color: '#F1C40F',
-            url: 'https://achyutamfruitam.aangandevelopers.com/'
+            category: 'Sensory Brand Site',
+            tags: ['Storytelling', 'UI/UX'],
+            logo: '/projects/achyutam.png',
+            video: '/videos/achyutam_fruitam_demo.mov',
         },
         {
-            title: 'Bazaar Branding',
-            category: 'Agency • Branding & Marketing',
-            image: '/projects/bazaar.png',
-            type: 'macbook',
-            color: '#E67E22',
-            url: 'https://bazaar-branding.onrender.com/'
+            slug: 'pnc',
+            title: 'PNC Nutrition',
+            category: 'Healthcare & Wellness',
+            tags: ['Health-Tech', 'SEO'],
+            logo: '/projects/priyam.png',
+            video: '/videos/pnc.mov',
         },
         {
-            title: 'Borana Weaves',
-            category: 'PHP • Luxury E-Commerce',
-            image: '/borana-weaves-logo.png',
-            type: 'macbook',
-            color: '#D4AF37',
-            url: 'https://boranaweaves.com'
+            slug: 'kalanjay',
+            title: 'Kalanjay',
+            category: 'Real Estate',
+            tags: ['Property', 'Lead Gen'],
+            logo: '/projects/kalanjay.png',
+            video: '/videos/kalanjay.mov',
         },
+        {
+            slug: 'borana-group',
+            title: 'Borana Group',
+            category: 'Corporate Identity',
+            tags: ['B2B', 'Industrial'],
+            logo: '/Borana_logo.svg',
+            video: '/videos/borana_demo.mov',
+        },
+        {
+            slug: 'abhishek-ispat',
+            title: 'Abhishek Ispat',
+            category: 'Industrial Archive',
+            tags: ['B2B', 'Database'],
+            logo: '/apil_logo.jpeg',
+            video: '/videos/aipl_demo.mov',
+        }
     ]
 
     return (
-        <section id="works" className="section-padding bg-background-dark perspective-1000">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
-                <div>
-                    <h2 className="text-xs uppercase tracking-[0.5em] font-bold mb-6 text-accent-primary">Selected Works</h2>
-                    <h3 className="heading-xl">DIGITAL<br />CRAFT.</h3>
+        <section id="works" className="section-padding bg-transparent text-paynes min-h-screen">
+            <div className="flex flex-col gap-12 mb-32">
+                <div className="flex items-center gap-6">
+                    <div className="h-[1px] w-12 bg-paynes" />
+                    <span className="text-paynes text-xs font-bold tracking-[0.5em] uppercase">
+                        Work Portfolio
+                    </span>
                 </div>
-                <div className="max-w-md">
-                    <p className="text-white/40 text-lg leading-relaxed mb-8">
-                        A curated selection of projects where design meets functionality. Focused on high-performance solutions and intuitive user experiences.
-                    </p>
+                <div className="flex flex-col md:flex-row justify-between items-end gap-20">
+                    <h2 className="text-7xl md:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.75]">
+                        Latest <br /> <span className="opacity-20 italic">Creations.</span>
+                    </h2>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
                 {projects.map((project, i) => (
-                    <ProjectCard key={project.title} project={project} />
+                    <ProjectCard key={project.title} project={project} index={i} />
                 ))}
+            </div>
+
+            <div className="mt-40 pt-20 border-t border-paynes/5 flex justify-center">
+                <Magnetic>
+                    <button className="flex flex-col items-center gap-4 group">
+                        {/* <span className="text-xs font-bold uppercase tracking-[0.5em] group-hover:italic transition-all">End of Selection</span> */}
+                        <div className="w-10 h-10 rounded-full border border-paynes/10 flex items-center justify-center">
+                            <div className="w-1 h-1 bg-paynes rounded-full" />
+                        </div>
+                    </button>
+                </Magnetic>
             </div>
         </section>
     )
