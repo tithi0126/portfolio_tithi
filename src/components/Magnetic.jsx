@@ -1,11 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import useSoundStore from '../store/useSoundStore'
-
 export default function Magnetic({ children }) {
     const ref = useRef(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const { playSound } = useSoundStore()
 
     const handleMouseMove = (e) => {
         const { clientX, clientY } = e;
@@ -17,7 +14,7 @@ export default function Magnetic({ children }) {
     }
 
     const handleMouseEnter = () => {
-        playSound('hover')
+        // Hover sound removed as per user request
     }
 
     const handleMouseLeave = () => {
@@ -32,7 +29,6 @@ export default function Magnetic({ children }) {
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => playSound('click')}
             animate={{ x, y }}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
         >
