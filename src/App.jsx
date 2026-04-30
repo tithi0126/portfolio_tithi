@@ -19,6 +19,7 @@ import Loader from './components/Loader'
 import MusicBar from './components/MusicBar'
 import { Toaster } from 'react-hot-toast'
 import Playlist from './components/Playlist'
+import Poetry from './components/Poetry'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -99,6 +100,7 @@ const AppContent = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/project/:id" element={<ProjectDetail />} />
                             <Route path="/playlist" element={<Playlist />} />
+                            <Route path="/poetry" element={<Poetry />} />
                         </Routes>
 
                         <MusicBar />

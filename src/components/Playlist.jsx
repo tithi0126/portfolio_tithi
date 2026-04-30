@@ -34,6 +34,23 @@ const Playlist = () => {
                         <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-none mb-4 italic uppercase">
                             VOCAL<br />ARCHIVE.
                         </h1>
+                        <AnimatePresence mode="wait">
+                            {isPlaying && currentSong ? (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="flex items-center gap-3 mb-6"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-pearl animate-pulse" />
+                                    <span className="text-pearl text-xs uppercase tracking-[0.4em] font-bold">
+                                        Now Playing: {currentSong.title}
+                                    </span>
+                                </motion.div>
+                            ) : (
+                                <div className="h-4 mb-6" /> // Placeholder to prevent jump
+                            )}
+                        </AnimatePresence>
                         <p className="text-pearl/40 uppercase tracking-[0.3em] text-xs font-bold">
                             {playlist.length} Recorded Performances • Classical & Contemporary
                         </p>
@@ -53,10 +70,10 @@ const Playlist = () => {
 
                 {/* List */}
                 <div className="flex flex-col gap-2">
-                    <div className="hidden md:grid grid-cols-[1fr_2fr_1fr_1fr] px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-bold text-pearl/20 border-b border-pearl/5">
+                    <div className="hidden md:grid grid-cols-[1fr_2fr_1fr] px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-bold text-pearl/20 border-b border-pearl/5">
                         <span>#</span>
                         <span>Title</span>
-                        <span>Category</span>
+                        {/* <span>Category</span> */}
                         <span className="text-right">Action</span>
                     </div>
 
@@ -69,7 +86,7 @@ const Playlist = () => {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: i * 0.05 }}
                                 onClick={() => isCurrent ? togglePlay() : playSong(song)}
-                                className={`group grid grid-cols-[50px_1fr_100px_100px] md:grid-cols-[1fr_2fr_1fr_1fr] items-center px-8 py-6 rounded-2xl cursor-pointer transition-all ${isCurrent ? 'bg-accent-primary text-background-dark' : 'hover:bg-pearl/5'}`}
+                                className={`group grid grid-cols-[50px_1fr_80px] md:grid-cols-[1fr_2fr_1fr] items-center px-8 py-6 rounded-2xl cursor-pointer transition-all ${isCurrent ? 'bg-pearl text-background-dark' : 'hover:bg-pearl/5'}`}
                             >
                                 <div className="font-mono text-sm opacity-40">
                                     {isCurrent && isPlaying ? (
@@ -96,9 +113,9 @@ const Playlist = () => {
                                     </div>
                                 </div>
 
-                                <div className={`hidden md:block text-xs uppercase tracking-widest font-bold ${isCurrent ? 'opacity-60' : 'opacity-40'}`}>
+                                {/* <div className={`hidden md:block text-xs uppercase tracking-widest font-bold ${isCurrent ? 'opacity-60' : 'opacity-40'}`}>
                                     {song.category}
-                                </div>
+                                </div> */}
 
                                 <div className="text-right">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ml-auto transition-all ${isCurrent ? 'bg-background-dark text-pearl' : 'bg-pearl/10 group-hover:bg-accent-primary group-hover:text-background-dark'}`}>

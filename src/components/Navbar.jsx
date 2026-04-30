@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Circle } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 import Magnetic from './Magnetic'
-import SoundToggle from './SoundToggle'
 
 const Navbar = ({ isOpen, setIsOpen }) => {
+    const location = useLocation()
     const [isDark, setIsDark] = useState(true)
     const [isScrolled, setIsScrolled] = useState(false)
     const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: true, hour: 'numeric', minute: 'numeric' }))
@@ -16,7 +17,6 @@ const Navbar = ({ isOpen, setIsOpen }) => {
         
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
-            // If scrolled more than 50vh, we've likely left the dark hero section
             if (window.scrollY > window.innerHeight * 0.8) {
                 setIsDark(false)
             } else {
@@ -37,7 +37,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
         { label: 'Stack', id: 'tech-stack' },
         { label: 'Certifications', id: 'certifications' },
         { label: 'Works', id: 'works' },
-        { label: 'Singing', id: 'singing' },
+        { label: 'Hobbies', id: 'hobbies' },
         { label: 'Contact', id: 'contact' }
     ]
 
@@ -49,7 +49,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
             <nav className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 transition-all duration-500 ${isOpen ? 'text-paynes bg-transparent' : `${textColorClass} ${isScrolled ? 'bg-pearl/80 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}`}>
                 <div className="flex items-center gap-12 pointer-events-auto">
                     <Magnetic>
-                        <a href="/" className="text-3xl font-display font-bold tracking-tighter">TITHI</a>
+                        <Link to="/" className="text-3xl font-display font-bold tracking-tighter">TITHI</Link>
                     </Magnetic>
 
                     <div className={`hidden lg:flex items-center gap-8 text-xs font-display uppercase tracking-[0.2em] font-bold ${isOpen ? 'opacity-0' : 'opacity-40'} transition-opacity`}>
@@ -65,13 +65,9 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                         <div>Surat, IND — {time}</div>
                     </div>
                 </div>
+                
 
                 <div className="flex items-center gap-8 pointer-events-auto z-[70]">
-                    {!isOpen && (
-                        <div className="hidden md:block">
-                            <SoundToggle isDark={isDark} />
-                        </div>
-                    )}
                     <Magnetic>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
@@ -115,13 +111,23 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                     transition={{ delay: 0.2 + i * 0.1, duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                                 >
                                     <Magnetic>
-                                        <a
-                                            href={`#${item.id}`}
-                                            onClick={() => setIsOpen(false)}
-                                            className="text-5xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
-                                        >
-                                            {item.label}
-                                        </a>
+                                        {item.path ? (
+                                            <Link
+                                                to={item.path}
+                                                onClick={() => setIsOpen(false)}
+                                                className="text-5xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                href={location.pathname === '/' ? `#${item.id}` : `/#${item.id}`}
+                                                onClick={() => setIsOpen(false)}
+                                                className="text-5xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        )}
                                     </Magnetic>
                                 </motion.div>
                             ))}

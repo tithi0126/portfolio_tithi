@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowLeft, ArrowUpRight, Play, Pause, ExternalLink, Loader2, RotateCcw, RotateCw, Maximize2, Volume2, VolumeX, Monitor, Video, Volume1 } from 'lucide-react'
 import Magnetic from './Magnetic'
 
 const ProjectDetail = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const videoRef = useRef(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [isMuted, setIsMuted] = useState(true)
+    const [volume, setVolume] = useState(1)
+    const [isLoading, setIsLoading] = useState(true)
+    const [hasError, setHasError] = useState(false)
+    const [progress, setProgress] = useState(0)
+    const [duration, setDuration] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
+    const [showControls, setShowControls] = useState(true)
+    const [activeVideoIndex, setActiveVideoIndex] = useState(0)
+    const [showVolumeSlider, setShowVolumeSlider] = useState(false)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -42,7 +54,10 @@ const ProjectDetail = () => {
             category: 'Agri-Tech AI',
             tags: ['Python', 'OpenCV', 'TensorFlow', 'IoT', 'Raspberry Pi'],
             logo: '/RootOut_Logo.png',
-            video: '/pitch_rootout.mp4',
+            videos: [
+                { label: 'Pitch Video', url: '/pitch_rootout.mp4', icon: <Video size={16} /> },
+                { label: 'Technical Demo', url: '/technical_demo_rootout.mp4', icon: <Monitor size={16} /> }
+            ],
             description: 'AI-powered robotic weed cutter developed for e-Yantra IIT Bombay. Achieved 90% weed detection accuracy using OpenCV and TensorFlow edge computing to reduce herbicide use by 40%.'
         },
         'design-formula': {
@@ -114,8 +129,93 @@ const ProjectDetail = () => {
 
     if (!project) return <div>Project not found</div>
 
+    const activeVideo = project.videos ? project.videos[activeVideoIndex] : { url: project.video }
+
+    useEffect(() => {
+        setIsLoading(true)
+        setHasError(false)
+        setProgress(0)
+        setCurrentTime(0)
+    }, [activeVideoIndex])
+
+    const togglePlay = (e) => {
+        if (e) e.stopPropagation()
+        const video = videoRef.current
+        if (video) {
+            if (video.paused) {
+                video.play().catch(console.error)
+            } else {
+                video.pause()
+            }
+        }
+    }
+
+    const toggleMute = (e) => {
+        if (e) e.stopPropagation()
+        if (videoRef.current) {
+            const newMute = !videoRef.current.muted
+            videoRef.current.muted = newMute
+            setIsMuted(newMute)
+            if (!newMute && videoRef.current.volume === 0) {
+                videoRef.current.volume = 1
+                setVolume(1)
+            }
+        }
+    }
+
+    const handleVolumeChange = (e) => {
+        const newVolume = parseFloat(e.target.value)
+        setVolume(newVolume)
+        if (videoRef.current) {
+            videoRef.current.volume = newVolume
+            if (newVolume > 0) {
+                videoRef.current.muted = false
+                setIsMuted(false)
+            } else {
+                videoRef.current.muted = true
+                setIsMuted(true)
+            }
+        }
+    }
+
+    const skip = (seconds) => {
+        if (videoRef.current) {
+            videoRef.current.currentTime += seconds
+        }
+    }
+
+    const handleProgress = () => {
+        if (videoRef.current) {
+            const current = videoRef.current.currentTime
+            const total = videoRef.current.duration
+            setCurrentTime(current)
+            setProgress((current / total) * 100)
+        }
+    }
+
+    const handleSeek = (e) => {
+        if (videoRef.current) {
+            const rect = e.currentTarget.getBoundingClientRect()
+            const pos = (e.clientX - rect.left) / rect.width
+            videoRef.current.currentTime = pos * videoRef.current.duration
+        }
+    }
+
+    const formatTime = (time) => {
+        if (isNaN(time)) return '0:00'
+        const minutes = Math.floor(time / 60)
+        const seconds = Math.floor(time % 60)
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`
+    }
+
+    const handlePlayState = () => {
+        if (videoRef.current) {
+            setIsPlaying(!videoRef.current.paused)
+        }
+    }
+
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -123,7 +223,7 @@ const ProjectDetail = () => {
         >
             <div className="max-w-7xl mx-auto">
                 <Magnetic>
-                    <button 
+                    <button
                         onClick={() => navigate('/')}
                         className="flex items-center gap-3 text-xs uppercase tracking-widest font-bold mb-20 group"
                     >
@@ -134,18 +234,194 @@ const ProjectDetail = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
                     <div className="lg:col-span-8">
-                        <h1 className="text-7xl md:text-9xl font-display font-bold tracking-tighter uppercase mb-12">
-                            {project.title}
-                        </h1>
-                        <div className="aspect-video rounded-3xl overflow-hidden bg-paynes/5 border border-paynes/5 mb-20 relative flex items-center justify-center">
-                            {project.video ? (
-                                <video src={project.video} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                        <div className="mb-12">
+                            <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Project Title</p>
+                            <h1 className="text-7xl md:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.85]">
+                                {project.title}
+                            </h1>
+                        </div>
+
+                        {/* Video Switcher Tabs */}
+                        {project.videos && (
+                            <div className="flex gap-4 mb-8">
+                                {project.videos.map((vid, idx) => (
+                                    <button
+                                        key={vid.label}
+                                        onClick={() => setActiveVideoIndex(idx)}
+                                        className={`flex items-center gap-2 px-6 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all ${activeVideoIndex === idx ? 'bg-paynes text-pearl' : 'bg-paynes/5 text-paynes/40 hover:bg-paynes/10'}`}
+                                    >
+                                        {vid.icon}
+                                        {vid.label}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        <div
+                            className="aspect-video rounded-3xl overflow-hidden bg-paynes/5 border border-paynes/5 mb-20 relative flex items-center justify-center group"
+                            onMouseEnter={() => setShowControls(true)}
+                            onMouseLeave={() => isPlaying && setShowControls(false)}
+                        >
+                            {activeVideo.url ? (
+                                <>
+                                    {isLoading && (
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-paynes/5 z-10">
+                                            <Loader2 size={40} className="animate-spin text-paynes/20 mb-4" />
+                                            <span className="text-[10px] uppercase tracking-widest font-bold opacity-20">Loading Archive...</span>
+                                        </div>
+                                    )}
+                                    {hasError && (
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-paynes/5 z-10">
+                                            <span className="text-[10px] uppercase tracking-widest font-bold text-red-500/40">Failed to load video</span>
+                                        </div>
+                                    )}
+                                    <video
+                                        key={activeVideo.url}
+                                        ref={videoRef}
+                                        src={activeVideo.url}
+                                        autoPlay
+                                        loop
+                                        muted={isMuted}
+                                        playsInline
+                                        className={`w-full h-full object-contain transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                                        onCanPlay={() => {
+                                            setIsLoading(false)
+                                            setDuration(videoRef.current.duration)
+                                            if (videoRef.current) videoRef.current.volume = volume
+                                        }}
+                                        onTimeUpdate={handleProgress}
+                                        onPlay={handlePlayState}
+                                        onPause={handlePlayState}
+                                        onError={() => {
+                                            setIsLoading(false)
+                                            setHasError(true)
+                                        }}
+                                        onClick={togglePlay}
+                                    />
+
+                                    {/* Mute Hint Overlay */}
+                                    <AnimatePresence>
+                                        {isPlaying && isMuted && !isLoading && !hasError && (
+                                            <motion.button
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                                onClick={toggleMute}
+                                                className="absolute top-8 right-8 bg-pearl/10 backdrop-blur-md border border-pearl/20 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold text-pearl z-20 flex items-center gap-2 hover:bg-pearl/20 transition-all"
+                                            >
+                                                <VolumeX size={14} />
+                                                Click for Sound
+                                            </motion.button>
+                                        )}
+                                    </AnimatePresence>
+
+                                    {/* Video Controls Overlay */}
+                                    <AnimatePresence>
+                                        {showControls && !isLoading && !hasError && (
+                                            <motion.div
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                className="absolute inset-0 bg-gradient-to-t from-paynes/60 via-transparent to-transparent flex flex-col justify-end p-8"
+                                            >
+                                                {/* Play/Pause Large Center Icon */}
+                                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                                    <motion.div
+                                                        initial={{ scale: 0.8, opacity: 0 }}
+                                                        animate={{ scale: 1, opacity: 1 }}
+                                                        className="w-20 h-20 rounded-full bg-pearl text-paynes flex items-center justify-center shadow-2xl"
+                                                    >
+                                                        {isPlaying ? <Pause size={32} fill="currentColor" /> : <Play size={32} fill="currentColor" className="ml-1" />}
+                                                    </motion.div>
+                                                </div>
+
+                                                {/* Controls Bar */}
+                                                <div className="space-y-6 relative z-20">
+                                                    {/* Progress Bar */}
+                                                    <div
+                                                        className="h-1.5 w-full bg-pearl/20 rounded-full cursor-pointer group/progress relative"
+                                                        onClick={handleSeek}
+                                                    >
+                                                        <div
+                                                            className="h-full bg-pearl rounded-full relative"
+                                                            style={{ width: `${progress}%` }}
+                                                        >
+                                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-pearl rounded-full scale-0 group-hover/progress:scale-100 transition-transform shadow-lg" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-center justify-between gap-8">
+                                                        <div className="flex items-center gap-6">
+                                                            <button onClick={() => skip(-10)} className="text-pearl hover:scale-110 transition-transform">
+                                                                <RotateCcw size={24} />
+                                                            </button>
+                                                            <button onClick={togglePlay} className="text-pearl hover:scale-110 transition-transform">
+                                                                {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}
+                                                            </button>
+                                                            <button onClick={() => skip(10)} className="text-pearl hover:scale-110 transition-transform">
+                                                                <RotateCw size={24} />
+                                                            </button>
+                                                            <div className="text-[10px] uppercase tracking-widest font-bold text-pearl/80 font-mono">
+                                                                {formatTime(currentTime)} / {formatTime(duration)}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-6">
+                                                            <div className="relative flex items-center gap-2 group/volume">
+                                                                <button
+                                                                    onClick={toggleMute}
+                                                                    onMouseEnter={() => setShowVolumeSlider(true)}
+                                                                    className="text-pearl hover:scale-110 transition-transform"
+                                                                >
+                                                                    {isMuted || volume === 0 ? <VolumeX size={24} /> : volume < 0.5 ? <Volume1 size={24} /> : <Volume2 size={24} />}
+                                                                </button>
+                                                                <AnimatePresence>
+                                                                    {showVolumeSlider && (
+                                                                        <motion.div
+                                                                            initial={{ width: 0, opacity: 0 }}
+                                                                            animate={{ width: 100, opacity: 1 }}
+                                                                            exit={{ width: 0, opacity: 0 }}
+                                                                            className="overflow-hidden"
+                                                                            onMouseLeave={() => setShowVolumeSlider(false)}
+                                                                        >
+                                                                            <input
+                                                                                type="range"
+                                                                                min="0"
+                                                                                max="1"
+                                                                                step="0.1"
+                                                                                value={isMuted ? 0 : volume}
+                                                                                onChange={handleVolumeChange}
+                                                                                className="w-24 accent-pearl cursor-pointer"
+                                                                            />
+                                                                        </motion.div>
+                                                                    )}
+                                                                </AnimatePresence>
+                                                            </div>
+                                                            <div className="bg-pearl/20 backdrop-blur-md border border-pearl/20 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold text-pearl shadow-sm">
+                                                                {isPlaying ? 'Live Preview' : 'Paused'}
+                                                            </div>
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation()
+                                                                    videoRef.current?.requestFullscreen()
+                                                                }}
+                                                                className="text-pearl hover:scale-110 transition-transform"
+                                                            >
+                                                                <Maximize2 size={20} />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </>
                             ) : project.image ? (
                                 <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                             ) : (
                                 <div className="flex flex-col items-center gap-6">
                                     <div className="w-40 h-40 rounded-full bg-paynes/5 border border-paynes/10 flex items-center justify-center p-8">
-                                        <img src={project.logo} alt={project.title} className="w-full h-full object-contain opacity-40 group-hover:opacity-100 transition-opacity" onError={(e) => e.target.style.display='none'} />
+                                        <img src={project.logo} alt={project.title} className="w-full h-full object-contain opacity-40 transition-opacity" onError={(e) => e.target.style.display = 'none'} />
                                         {!project.logo && <div className="text-4xl font-display font-bold opacity-10 uppercase">{project.title.charAt(0)}</div>}
                                     </div>
                                     <span className="text-[10px] font-bold uppercase tracking-[0.5em] opacity-20">Visual Archive Pending</span>
@@ -158,7 +434,7 @@ const ProjectDetail = () => {
                         <div className="space-y-12">
                             <div>
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Category</p>
-                                <p className="text-xl font-bold uppercase">{project.category}</p>
+                                <p className="text-xl font-bold uppercase tracking-tight">{project.category}</p>
                             </div>
                             <div>
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Technologies</p>
@@ -174,6 +450,20 @@ const ProjectDetail = () => {
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Description</p>
                                 <p className="text-lg leading-relaxed text-paynes/60">{project.description}</p>
                             </div>
+
+                            {project.url && (
+                                <Magnetic>
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-paynes text-pearl font-bold uppercase tracking-widest text-xs group hover:scale-105 transition-all"
+                                    >
+                                        Visit Live Project
+                                        <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </a>
+                                </Magnetic>
+                            )}
                         </div>
                     </div>
                 </div>

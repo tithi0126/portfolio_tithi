@@ -52,6 +52,14 @@ const MusicBar = () => {
         }
     }, [audio, setProgress, resetProgress])
 
+    useEffect(() => {
+        if (isPlaying && currentSong) {
+            document.title = `Now Playing: ${currentSong.title} — Tithi Shah`;
+        } else {
+            document.title = "Tithi Shah | Portfolio";
+        }
+    }, [isPlaying, currentSong])
+
     if (!currentSong) return null
 
     return (
@@ -72,11 +80,11 @@ const MusicBar = () => {
 
                 {/* Song Info */}
                 <div className="flex items-center gap-4 min-w-[150px] md:min-w-[200px]">
-                    <div className="w-12 h-12 rounded-lg bg-accent-primary/20 flex items-center justify-center text-accent-primary">
+                    <div className="w-12 h-12 rounded-lg bg-pearl/10 flex items-center justify-center text-pearl">
                         <ListMusic size={24} />
                     </div>
                     <div className="overflow-hidden">
-                        <h4 className="font-bold text-sm truncate uppercase tracking-tight">{currentSong.title}</h4>
+                        <h4 className="font-bold text-sm truncate uppercase tracking-tight text-pearl">{currentSong.title}</h4>
                         <p className="text-[10px] uppercase tracking-widest text-pearl/40">{currentSong.artist}</p>
                     </div>
                 </div>
@@ -101,13 +109,6 @@ const MusicBar = () => {
 
                 {/* Tools */}
                 <div className="flex items-center gap-4 md:gap-6 min-w-[80px] justify-end">
-                    <button
-                        onClick={() => setIsMuted(!isMuted)}
-                        className="text-pearl/40 hover:text-pearl transition-colors"
-                    >
-                        {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                    </button>
-
                     <button
                         onClick={() => location.pathname === '/playlist' ? navigate('/') : navigate('/playlist')}
                         className={`p-2 rounded-lg transition-all ${location.pathname === '/playlist' ? 'bg-accent-primary text-background-dark' : 'text-pearl/40 hover:text-pearl'}`}
