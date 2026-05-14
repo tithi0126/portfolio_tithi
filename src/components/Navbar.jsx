@@ -115,7 +115,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                             <Link
                                                 to={item.path}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-5xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                                className="text-4xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
                                             >
                                                 {item.label}
                                             </Link>
@@ -123,7 +123,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                             <a
                                                 href={location.pathname === '/' ? `#${item.id}` : `/#${item.id}`}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-5xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                                className="text-4xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
                                             >
                                                 {item.label}
                                             </a>
@@ -133,7 +133,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                             ))}
                         </div>
 
-                        <div className="absolute bottom-12 left-6 md:left-24 right-6 md:right-12 flex flex-col md:flex-row justify-between items-end gap-12 border-t border-paynes/10 pt-8">
+                        <div className="absolute bottom-8 md:bottom-12 left-6 md:left-24 right-6 md:right-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 md:gap-12 border-t border-paynes/10 pt-8">
                             <div className="flex flex-col gap-2">
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">Socials</p>
                                 <div className="flex gap-8 text-xs font-bold uppercase tracking-widest">
@@ -141,9 +141,9 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                     <a href="https://github.com/tithi0126" target="_blank" rel="noopener noreferrer" className="hover:italic transition-all">GitHub</a>
                                 </div>
                             </div>
-                            <div className="text-right flex flex-col gap-2">
+                            <div className="text-left md:text-right flex flex-col gap-2">
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">Get in touch</p>
-                                <p className="text-xl font-display font-bold uppercase">tithishah26@gmail.com</p>
+                                <p className="text-lg md:text-xl font-display font-bold uppercase">tithishah26@gmail.com</p>
                             </div>
                         </div>
                     </motion.div>

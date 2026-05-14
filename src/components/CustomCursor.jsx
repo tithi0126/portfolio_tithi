@@ -35,7 +35,7 @@ export default function CustomCursor() {
                     left: smoothMouse.x,
                     top: smoothMouse.y,
                 }}
-                className="fixed w-8 h-8 rounded-full border border-accent-primary pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center mix-blend-difference"
+                className="fixed w-8 h-8 rounded-full border border-accent-primary pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center mix-blend-difference"
             >
                 <div className="w-1 h-1 bg-accent-primary rounded-full" />
             </motion.div>

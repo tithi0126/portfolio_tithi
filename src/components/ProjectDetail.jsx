@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight, Play, Pause, ExternalLink, Loader2, RotateCcw, RotateCw, Maximize2, Volume2, VolumeX, Monitor, Video, Volume1 } from 'lucide-react'
 import Magnetic from './Magnetic'
@@ -31,7 +31,13 @@ const ProjectDetail = () => {
             tags: ['React', 'ASP.NET Core 8', 'Flutter', 'SignalR', 'Claude API', 'Knot API'],
             logo: '/inner_voice_logo.png',
             url: 'https://devpost.com/software/innervoice-breaking-ai-to-make-it-safer',
-            description: 'Solo-built mental health AI platform at HackPrinceton. Discovered 4 AI jailbreak vulnerabilities and implemented real-time safety probes achieving 80%+ catch rate. Integrated Knot TransactionLink API for medications.'
+            description: "We broke our own mental health AI in 10 seconds. Then we made it unbreakable. A dual-superpower platform that detects its own weaknesses through automated red-teaming and sees behavioral signals through Knot's TransactionLink API to provide proactive support before the user even asks.",
+            features: [
+                "Automated Red-Teaming: Systematically attacks the AI with roleplay manipulation and fake overrides to find failure modes.",
+                "Real-time Safety Probe: A lightweight rule-based classifier achieving 80%+ catch rate for AI jailbreaks with zero perceptible latency.",
+                "Steering Vector Correction: Automatically regenerates harmful messages into safe, clinically-sound responses.",
+                "Knot TransactionLink Integration: Connects SKU-level pharmacy data to notice health changes before the user reports them."
+            ]
         },
         'aangan-developers': {
             title: 'Aangan Developers',
@@ -223,20 +229,20 @@ const ProjectDetail = () => {
         >
             <div className="max-w-7xl mx-auto">
                 <Magnetic>
-                    <button
-                        onClick={() => navigate('/')}
-                        className="flex items-center gap-3 text-xs uppercase tracking-widest font-bold mb-20 group"
+                    <Link
+                        to="/#works"
+                        className="flex items-center gap-3 text-xs uppercase tracking-widest font-bold mb-20 group inline-flex"
                     >
                         <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" />
                         Back to Works
-                    </button>
+                    </Link>
                 </Magnetic>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
                     <div className="lg:col-span-8">
                         <div className="mb-12">
                             <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Project Title</p>
-                            <h1 className="text-7xl md:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.85]">
+                            <h1 className="text-5xl md:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.85]">
                                 {project.title}
                             </h1>
                         </div>
@@ -419,18 +425,20 @@ const ProjectDetail = () => {
                             ) : project.image ? (
                                 <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                             ) : (
-                                <div className="flex flex-col items-center gap-6">
-                                    <div className="w-40 h-40 rounded-full bg-paynes/5 border border-paynes/10 flex items-center justify-center p-8">
-                                        <img src={project.logo} alt={project.title} className="w-full h-full object-contain opacity-40 transition-opacity" onError={(e) => e.target.style.display = 'none'} />
-                                        {!project.logo && <div className="text-4xl font-display font-bold opacity-10 uppercase">{project.title.charAt(0)}</div>}
+                                <div className="flex flex-col items-center justify-center h-full w-full">
+                                    <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-paynes/5 border border-paynes/10 flex items-center justify-center p-12 transition-all hover:bg-paynes/10">
+                                        {project.logo ? (
+                                            <img src={project.logo} alt={project.title} className="w-full h-full object-contain opacity-40 group-hover:opacity-100 transition-opacity" />
+                                        ) : (
+                                            <div className="text-8xl font-display font-bold opacity-10 uppercase">{project.title.charAt(0)}</div>
+                                        )}
                                     </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.5em] opacity-20">Visual Archive Pending</span>
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    <div className="lg:col-span-4 flex flex-col justify-end pb-20">
+                    <div className="lg:col-span-4 flex flex-col justify-end pb-8 md:pb-20">
                         <div className="space-y-12">
                             <div>
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Category</p>
@@ -450,6 +458,20 @@ const ProjectDetail = () => {
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Description</p>
                                 <p className="text-lg leading-relaxed text-paynes/60">{project.description}</p>
                             </div>
+
+                            {project.features && (
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4">Technical Highlights</p>
+                                    <ul className="space-y-4">
+                                        {project.features.map((feature, i) => (
+                                            <li key={i} className="flex gap-4 items-start text-sm leading-relaxed text-paynes/60">
+                                                <span className="text-paynes opacity-30 font-mono mt-1">0{i+1}</span>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             {project.url && (
                                 <Magnetic>

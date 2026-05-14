@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Pause, Mic2, Search, ArrowLeft, Disc } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import useSoundStore from '../store/useSoundStore'
 
 const Playlist = () => {
@@ -24,14 +24,14 @@ const Playlist = () => {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20">
                     <div>
-                        <button
-                            onClick={() => navigate('/')}
-                            className="flex items-center gap-2 text-accent-primary mb-8 hover:-translate-x-2 transition-transform"
+                        <Link
+                            to="/"
+                            className="flex items-center gap-2 text-accent-primary mb-8 hover:-translate-x-2 transition-transform inline-flex"
                         >
                             <ArrowLeft size={20} />
                             <span className="text-xs uppercase tracking-widest font-bold">Back to Portfolio</span>
-                        </button>
-                        <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-none mb-4 italic uppercase">
+                        </Link>
+                        <h1 className="text-5xl md:text-9xl font-bold tracking-tighter leading-none mb-4 italic uppercase">
                             VOCAL<br />ARCHIVE.
                         </h1>
                         <AnimatePresence mode="wait">

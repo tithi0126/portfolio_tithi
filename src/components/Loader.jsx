@@ -34,13 +34,13 @@ export default function Loader({ onComplete }) {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-8xl font-display font-bold tracking-tighter"
+                            className="text-6xl md:text-8xl font-display font-bold tracking-tighter"
                         >
                             TITHI
                         </motion.h2>
                         <div className="flex items-center gap-4 w-full">
                             <div className="h-[1px] bg-pearl/20 flex-1" />
-                            <span className="text-4xl font-mono font-bold leading-none">{progress}%</span>
+                            <span className="text-2xl md:text-4xl font-mono font-bold leading-none">{progress}%</span>
                         </div>
                     </div>
                 </motion.div>

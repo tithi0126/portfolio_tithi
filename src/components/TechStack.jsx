@@ -77,7 +77,7 @@ const TechStack = () => {
                     <div className="h-[1px] w-12 bg-paynes" />
                     <span className="text-paynes text-xs font-bold tracking-[0.5em] uppercase">Architecture & Logic</span>
                 </div>
-                <h3 className="text-7xl md:text-[8rem] font-display font-medium leading-[0.8] tracking-tighter uppercase">
+                <h3 className="text-5xl md:text-[8rem] font-display font-medium leading-[0.8] tracking-tighter uppercase">
                     TECHNICAL <br /> <span className="opacity-20 italic">Foundation.</span>
                 </h3>
             </div>

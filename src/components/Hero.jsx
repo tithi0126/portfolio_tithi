@@ -37,8 +37,8 @@ const Hero = () => {
                 className="absolute inset-0 bg-grid-pearl pointer-events-none" 
             />
             
-            <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-pearl/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-pearl/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/4 -right-20 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-pearl/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-pearl/5 rounded-full blur-[60px] md:blur-[100px] pointer-events-none" />
 
             <motion.div
                 variants={container}
@@ -86,7 +86,7 @@ const Hero = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-16">
                     <motion.p
                         variants={item}
-                        className="text-xl md:text-2xl text-pearl/60 max-w-xl leading-relaxed font-light"
+                        className="text-lg md:text-2xl text-pearl/60 max-w-xl leading-relaxed font-light"
                     >
                         Tithi Shah — Full-Stack Developer & UI Architect. Pursuing M.Sc. IT with a focus on immersive systems, high-performance engineering, and minimalist visual poetry.
                     </motion.p>

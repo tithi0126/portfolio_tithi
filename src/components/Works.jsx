@@ -21,7 +21,7 @@ const ProjectRow = ({ project, index, onHover }) => {
                     <span className="text-sm font-mono opacity-50 group-hover:opacity-100 transition-opacity">
                         {(index + 1).toString().padStart(2, '0')}
                     </span>
-                    <h3 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-500">
+                    <h3 className="text-3xl md:text-6xl font-display font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-500">
                         {project.title}
                     </h3>
                 </div>
@@ -142,7 +142,7 @@ const Works = () => {
                         </span>
                     </div>
                     <div className="flex flex-col md:flex-row justify-between items-end gap-12">
-                        <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-display font-bold tracking-tighter uppercase leading-[0.85]">
+                        <h2 className="text-5xl md:text-8xl lg:text-[10rem] font-display font-bold tracking-tighter uppercase leading-[0.85]">
                             Recent <br /> <span className="opacity-30 italic">Projects.</span>
                         </h2>
                         <p className="max-w-sm text-sm uppercase tracking-widest opacity-60 font-bold mb-4">

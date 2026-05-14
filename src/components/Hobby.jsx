@@ -36,7 +36,7 @@ const Hobby = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-20">
                     <h2 className="text-xs uppercase tracking-[0.5em] font-bold mb-6 opacity-30 italic">Creative Soul</h2>
-                    <h3 className="text-6xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.85]">
+                    <h3 className="text-5xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.85]">
                         Beyond<br />Code.
                     </h3>
                 </div>

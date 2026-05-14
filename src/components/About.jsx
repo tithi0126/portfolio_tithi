@@ -31,7 +31,7 @@ const About = () => {
                                     Core Philosophy
                                 </span>
                             </Reveal>
-                            <h2 className="text-5xl md:text-7xl lg:text-[7.5rem] font-display font-medium leading-[0.9] tracking-tighter">
+                            <h2 className="text-4xl md:text-7xl lg:text-[7.5rem] font-display font-medium leading-[0.9] tracking-tighter">
                                 <TextReveal text="BRIDGING THE GAP BETWEEN TECHNICAL RIGOR AND VISUAL POETRY." />
                             </h2>
                         </div>
@@ -51,7 +51,7 @@ const About = () => {
                     </div>
                     <div className="lg:col-span-6">
                         <Reveal delay={0.5}>
-                            <p className="text-3xl md:text-5xl font-light leading-[1.1] text-paynes/70 tracking-tight mb-20">
+                            <p className="text-2xl md:text-5xl font-light leading-[1.1] text-paynes/70 tracking-tight mb-12 md:mb-20">
                                 My approach to software development is architectural. Like a building, 
                                 a system must be structurally sound, highly performant, and visually 
                                 harmonious. I don't just write code; I design ecosystems.

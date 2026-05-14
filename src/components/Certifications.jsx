@@ -43,14 +43,11 @@ const Certifications = () => {
     const [showAll, setShowAll] = useState(false)
 
     const certifications = [
-        { title: 'Career Essentials in Software Development', file: 'CertificateOfCompletion_Career Essentials in Software Development by Microsoft and LinkedIn.pdf' },
-        { title: 'Programming Foundations Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Fundamentals.pdf' },
-        { title: 'Programming Foundations Beyond the Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Beyond the Fundamentals.pdf' },
-        { title: 'Introduction to Career Skills in Software Development', file: 'CertificateOfCompletion_Introduction to Career Skills in Software Development.pdf' },
-        { title: 'WordPress for Beginners', file: 'Coursera WordPress.pdf' },
-        { title: 'Data Visualisation: Empowering Business', file: 'Data Visualisation Empowering Business.pdf' },
-        { title: 'Learn Figma: UI/UX Design Masterclass', file: 'Udemy Figma.pdf' },
+        { title: 'IIT Bombay e-Yantra Certificate', file: 'E-yantra.png' },
+        { title: 'Innovation Online Course (e-Yantra)', file: 'e-Yantra Online Course on Innovation.pdf' },
         { title: 'AWS Academy Graduate - ML Foundations', file: 'AWS Machine Learning.pdf' },
+        { title: 'Cybersecurity Fundamentals (IBM)', file: 'IBM Cybersecurity.pdf' },
+        { title: 'Fundamentals of Cybersecurity (Accenture)', file: 'Accenture Cybersecurity.pdf' },
         { title: 'Google Cloud Security & Operations', file: 'Google Cloud Security.pdf' },
         { title: 'Introduction to Responsible AI (Google)', file: 'Google AI 1.pdf' },
         { title: 'Introduction to Generative AI (Google)', file: 'Google AI 2.pdf' },
@@ -58,14 +55,17 @@ const Certifications = () => {
         { title: 'Innovating with Data (Google Cloud)', file: 'Google Cloud Data.pdf' },
         { title: 'Infrastructure & App Modernization (Google)', file: 'Google Cloud Infrastructure.pdf' },
         { title: 'Digital Transformation with Google Cloud', file: 'Google Cloud Transformation.pdf' },
-        { title: 'Cybersecurity Fundamentals (IBM)', file: 'IBM Cybersecurity.pdf' },
-        { title: 'Fundamentals of Cybersecurity (Accenture)', file: 'Accenture Cybersecurity.pdf' },
+        { title: 'Career Essentials in Software Development', file: 'CertificateOfCompletion_Career Essentials in Software Development by Microsoft and LinkedIn.pdf' },
+        { title: 'Programming Foundations Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Fundamentals.pdf' },
+        { title: 'Programming Foundations Beyond the Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Beyond the Fundamentals.pdf' },
+        { title: 'Introduction to Career Skills in Software Development', file: 'CertificateOfCompletion_Introduction to Career Skills in Software Development.pdf' },
+        { title: 'Learn Figma: UI/UX Design Masterclass', file: 'Udemy Figma.pdf' },
+        { title: 'Data Visualisation: Empowering Business', file: 'Data Visualisation Empowering Business.pdf' },
+        { title: 'WordPress for Beginners', file: 'Coursera WordPress.pdf' },
         { title: 'Java Participant Certificate', file: 'TITHI-SHAH-Participant-Certificate_Java.pdf' },
         { title: 'Advance C++ Certificate', file: 'TITHI-SHAH-Participant-Certificate_advanceCpp.pdf' },
         { title: 'HTML Participant Certificate', file: 'TITHI-SHAH-Participant-Certificate_html.pdf' },
         { title: 'Javascript Participant Certificate', file: 'TITHI-SHAH-Participant-Certificate_js.pdf' },
-        { title: 'IIT Bombay e-Yantra Certificate', file: 'E-yantra.png' },
-        { title: 'Innovation Online Course (e-Yantra)', file: 'e-Yantra Online Course on Innovation.pdf' },
         { title: 'RDBMS Participant Certificate', file: 'TITHI-SHAH-Participant-Certificate_rdbms.pdf' },
         { title: 'Introduction to Computers', file: 'TITHI-SHAH-Participant-Certificate_intro_to computer.pdf' },
         { title: 'Academic Achievement Certificate', file: 'Tithi Jimmy Shah_16034.pdf' },
@@ -84,7 +84,7 @@ const Certifications = () => {
                         Expertise
                     </span>
                 </div>
-                <h3 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.8] text-paynes">
+                <h3 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.8] text-paynes">
                     Certified <br /> <span className="opacity-20 italic">Curriculum.</span>
                 </h3>
             </div>

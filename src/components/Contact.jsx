@@ -76,7 +76,7 @@ const Contact = () => {
                     <span className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 block mb-6">
                         Contact Portal
                     </span>
-                    <h2 className="text-[10vw] font-bold tracking-tighter leading-[0.8] uppercase">
+                    <h2 className="font-bold tracking-tighter leading-[0.8] uppercase" style={{ fontSize: 'clamp(3rem, 10vw, 12rem)' }}>
                         Let's build <br />
                         <span className="text-paynes/20 italic">The Future</span>
                     </h2>

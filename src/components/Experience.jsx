@@ -124,7 +124,7 @@ const Experience = () => {
                             </div>
                         </Reveal>
                         <Reveal delay={0.3}>
-                            <h2 className="text-6xl md:text-[8rem] font-display font-bold leading-[0.8] tracking-tighter uppercase">
+                            <h2 className="text-5xl md:text-[8rem] font-display font-bold leading-[0.8] tracking-tighter uppercase">
                                 JOURNEY <br /> <span className="opacity-20 italic underline decoration-paynes/10">Timeline.</span>
                             </h2>
                         </Reveal>
@@ -151,9 +151,9 @@ const Experience = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-paynes/5 border border-paynes/5">
                         {education.map(edu => (
-                            <div key={edu.id} className="p-12 bg-pearl">
+                            <div key={edu.id} className="p-8 md:p-12 bg-pearl">
                                 <span className="text-[10px] font-bold opacity-20 uppercase tracking-widest">{edu.period}</span>
-                                <h5 className="text-3xl font-display font-bold uppercase mt-4 mb-2 tracking-tighter">{edu.school}</h5>
+                                <h5 className="text-2xl md:text-3xl font-display font-bold uppercase mt-4 mb-2 tracking-tighter">{edu.school}</h5>
                                 <p className="text-xs opacity-40 uppercase tracking-[0.3em] font-bold italic">{edu.note}</p>
                             </div>
                         ))}
@@ -180,10 +180,10 @@ const Experience = () => {
                                 <div className="flex justify-between items-start mb-20">
                                     <div className="space-y-4">
                                         <span className="px-4 py-2 bg-paynes/5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-paynes/10">{selected.type}</span>
-                                        <h3 className="text-5xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-none">
+                                        <h3 className="text-4xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-none">
                                             {selected.company || selected.event}
                                         </h3>
-                                        <p className="text-2xl italic opacity-40 font-light">{selected.role}</p>
+                                        <p className="text-xl md:text-2xl italic opacity-40 font-light">{selected.role}</p>
                                     </div>
                                     <button 
                                         onClick={() => setSelected(null)}
