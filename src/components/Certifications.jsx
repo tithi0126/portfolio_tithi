@@ -7,7 +7,7 @@ const CertificationRow = React.forwardRef(({ cert, index }, ref) => (
     <motion.a
         ref={ref}
         layout
-        href={`/certification/${cert.file}`}
+        href={cert.url || `/certification/${cert.file}`}
         target="_blank"
         rel="noopener noreferrer"
         initial={{ y: 20, opacity: 0 }}
@@ -46,15 +46,18 @@ const Certifications = () => {
         { title: 'IIT Bombay e-Yantra Certificate', file: 'E-yantra.png' },
         { title: 'Innovation Online Course (e-Yantra)', file: 'e-Yantra Online Course on Innovation.pdf' },
         { title: 'AWS Academy Graduate - ML Foundations', file: 'AWS Machine Learning.pdf' },
-        { title: 'Cybersecurity Fundamentals (IBM)', file: 'IBM Cybersecurity.pdf' },
-        { title: 'Fundamentals of Cybersecurity (Accenture)', file: 'Accenture Cybersecurity.pdf' },
-        { title: 'Google Cloud Security & Operations', file: 'Google Cloud Security.pdf' },
-        { title: 'Introduction to Responsible AI (Google)', file: 'Google AI 1.pdf' },
-        { title: 'Introduction to Generative AI (Google)', file: 'Google AI 2.pdf' },
-        { title: 'Introduction to Large Language Models (Google)', file: 'Google AI 3.pdf' },
-        { title: 'Innovating with Data (Google Cloud)', file: 'Google Cloud Data.pdf' },
-        { title: 'Infrastructure & App Modernization (Google)', file: 'Google Cloud Infrastructure.pdf' },
-        { title: 'Digital Transformation with Google Cloud', file: 'Google Cloud Transformation.pdf' },
+        { title: 'Cybersecurity Fundamentals (IBM)', file: 'IBMDesign20260516-31-z0l1no.pdf' },
+        { title: 'Fundamentals of Cybersecurity (Accenture)', file: 'Accenture Cybersecurity.png' },
+        { title: 'Understanding Google Cloud Security and Operations', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6381513' },
+        { title: 'Introduction to Responsible AI', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6371611' },
+        { title: 'Introduction to Generative AI', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6187089' },
+        { title: 'Introduction to Large Language Models', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6185201' },
+        { title: 'Innovating with Data and Google Cloud', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6372299' },
+        { title: 'Infrastructure and Application Modernization with Google Cloud', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6373051' },
+        { title: 'Digital Transformation with Google Cloud', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6371978' },
+        { title: 'Hands-on approach to AI for real-world applications (TCS iON)', file: 'tcsIon.jpg' },
+        { title: 'SIH 2025 Internal Hackathon Winner', file: 'sih_internal_hackathon.jpg' },
+        { title: 'EY Techathon 4.0 Participation', file: 'EY Techathon.pdf' },
         { title: 'Career Essentials in Software Development', file: 'CertificateOfCompletion_Career Essentials in Software Development by Microsoft and LinkedIn.pdf' },
         { title: 'Programming Foundations Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Fundamentals.pdf' },
         { title: 'Programming Foundations Beyond the Fundamentals', file: 'CertificateOfCompletion_Programming Foundations Beyond the Fundamentals.pdf' },
