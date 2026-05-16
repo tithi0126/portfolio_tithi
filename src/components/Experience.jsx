@@ -12,7 +12,7 @@ const Experience = () => {
             type: 'Professional',
             company: "Pragma Infotech",
             role: "Full-Stack Developer",
-            period: "June 2024 — Mar 2026",
+            period: "June 2024 — Mar 2025",
             description: "Developed responsive web applications and engineered production-ready solutions across diverse client sectors including e-commerce and B2B.",
             details: [
                 "Engineered Rowan Decor (Flutter e-commerce), AIPL & ZapBits (PHP corporate), and Borana Weaves (B2B).",
@@ -136,9 +136,9 @@ const Experience = () => {
                     </Reveal>
                 </div>
 
-                {/* Professional + Competitive */}
+                {/* Princeton + e-Yantra + Professional */}
                 <div className="flex flex-col">
-                    {[...workExperience, ...competitiveTrack].map((exp) => (
+                    {[...competitiveTrack, ...workExperience].map((exp) => (
                         <Item key={exp.id} exp={exp} />
                     ))}
                 </div>
