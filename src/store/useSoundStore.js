@@ -23,9 +23,9 @@ const useSoundStore = create((set, get) => ({
         { title: 'Sajni Re', file: '1]sajni_re.mp3', artist: 'Tithi Shah', category: 'Independent' },
 
         // Group 3
-        { title: 'Mora Saiyaan', file: '3]Mora_Saiyaan.mp3', artist: 'Tithi Shah', category: 'Classical' },
+        // { title: 'Mora Saiyaan', file: '3]Mora_Saiyaan.mp3', artist: 'Tithi Shah', category: 'Classical' },
         { title: 'Aaj Din Chadheya', file: '3]aaj_din_chadheya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        // { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Main Rahu Ya Na Rahu', file: '3]main_rahu_ya_na_rahu.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Savan Beeto Jai', file: '3]savan_beeto_jai.mp3', artist: 'Tithi Shah', category: 'Classical' },
         { title: 'Tere Hawale', file: '3]tere_hawale.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
@@ -37,7 +37,8 @@ const useSoundStore = create((set, get) => ({
         { title: 'Dagabaaz Re', file: '2]dagabaazre.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Dekha Hazaro Dafa', file: '2]dekha_hazaro_dafa.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Kaise Ab Kahe', file: '2]kaise_ab_kahe.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Ye Dil Tum Bin', file: '2]ye_dil_tum_bin.mp3', artist: 'Tithi Shah', category: 'Bollywood' }
+        { title: 'Ye Dil Tum Bin', file: '2]ye_dil_tum_bin.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Saiyaara', file: 'Saiyaara.mp3', artist: 'Tithi Shah', category: 'Bollywood' }
     ],
 
     setIsMuted: (muted) => {
