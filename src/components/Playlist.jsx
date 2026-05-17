@@ -15,7 +15,7 @@ const Playlist = () => {
     )
 
     return (
-        <section className="min-h-screen bg-background-dark text-pearl pt-32 pb-40 px-6 md:px-24">
+        <section className="min-h-screen bg-background-dark text-pearl pt-24 pb-32 md:pt-32 md:pb-40 px-6 md:px-24">
             <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -86,7 +86,7 @@ const Playlist = () => {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: i * 0.05 }}
                                 onClick={() => isCurrent ? togglePlay() : playSong(song)}
-                                className={`group grid grid-cols-[50px_1fr_80px] md:grid-cols-[1fr_2fr_1fr] items-center px-8 py-6 rounded-2xl cursor-pointer transition-all ${isCurrent ? 'bg-pearl text-background-dark' : 'hover:bg-pearl/5'}`}
+                                className={`group grid grid-cols-[40px_1fr_60px] md:grid-cols-[1fr_2fr_1fr] items-center px-4 md:px-8 py-4 md:py-6 rounded-2xl cursor-pointer transition-all ${isCurrent ? 'bg-pearl text-background-dark' : 'hover:bg-pearl/5'}`}
                             >
                                 <div className="font-mono text-sm opacity-40">
                                     {isCurrent && isPlaying ? (

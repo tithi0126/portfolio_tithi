@@ -87,9 +87,9 @@ const Experience = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group py-12 border-b border-paynes/5 hover:border-paynes/10 transition-all cursor-pointer relative overflow-hidden"
+            className="group py-8 md:py-12 border-b border-paynes/5 hover:border-paynes/10 transition-all cursor-pointer relative overflow-hidden"
         >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10 transition-transform duration-500 group-hover:translate-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center relative z-10 transition-transform duration-500 group-hover:translate-x-4">
                 <div className="md:col-span-2 text-paynes/20 font-mono text-sm tracking-tighter">{exp.period}</div>
                 <div className="md:col-span-1 lg:col-span-1">
                     <div className="w-10 h-10 rounded-full border border-paynes/10 flex items-center justify-center group-hover:bg-paynes group-hover:text-pearl transition-all">
@@ -113,7 +113,7 @@ const Experience = () => {
 
     return (
         <section id="experience" className="section-padding bg-transparent text-paynes min-h-screen">
-            <div className="flex flex-col gap-32">
+            <div className="flex flex-col gap-16 md:gap-32">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end gap-12">
                     <div className="space-y-6">
@@ -177,10 +177,10 @@ const Experience = () => {
                             className="fixed inset-4 md:inset-x-20 md:inset-y-12 bg-pearl border border-paynes/10 z-[101] overflow-hidden rounded-[3rem] shadow-2xl flex flex-col"
                         >
                             <div className="flex-1 overflow-y-auto p-12 md:p-24">
-                                <div className="flex justify-between items-start mb-20">
+                                <div className="flex justify-between items-start mb-12 md:mb-20">
                                     <div className="space-y-4">
                                         <span className="px-4 py-2 bg-paynes/5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-paynes/10">{selected.type}</span>
-                                        <h3 className="text-4xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-none">
+                                        <h3 className="text-3xl sm:text-4xl md:text-8xl font-display font-medium uppercase tracking-tighter leading-none">
                                             {selected.company || selected.event}
                                         </h3>
                                         <p className="text-xl md:text-2xl italic opacity-40 font-light">{selected.role}</p>
@@ -207,7 +207,7 @@ const Experience = () => {
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: 0.1 * i }}
                                                         key={i} 
-                                                        className="text-xl md:text-2xl font-light leading-relaxed flex gap-6"
+                                                        className="text-lg md:text-2xl font-light leading-relaxed flex gap-4 md:gap-6"
                                                     >
                                                         <span className="text-paynes/20 italic">0{i+1}</span>
                                                         {detail}

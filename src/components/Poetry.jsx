@@ -45,7 +45,7 @@ const Poetry = () => {
     }, [])
 
     return (
-        <section className="min-h-screen bg-background-dark text-pearl pt-32 pb-40 px-6 md:px-24">
+        <section className="min-h-screen bg-background-dark text-pearl pt-24 pb-20 md:pt-32 md:pb-40 px-6 md:px-24">
             <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -95,7 +95,7 @@ const Poetry = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: i * 0.02 }}
                             onClick={() => openPoem(poem)}
-                            className="group grid grid-cols-[50px_1fr] md:grid-cols-[1fr_3fr] items-center px-8 py-6 rounded-2xl cursor-pointer transition-all hover:bg-pearl/5"
+                            className="group grid grid-cols-[50px_1fr] md:grid-cols-[1fr_3fr] items-center px-4 md:px-8 py-4 md:py-6 rounded-2xl cursor-pointer transition-all hover:bg-pearl/5"
                         >
                             <div className="font-mono text-sm opacity-40">
                                 {String(i + 1).padStart(2, '0')}
@@ -135,8 +135,8 @@ const Poetry = () => {
                             className="bg-pearl text-paynes w-full max-w-3xl max-h-[85vh] rounded-3xl overflow-hidden flex flex-col shadow-2xl relative"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="flex justify-between items-center p-8 border-b border-paynes/10">
-                                <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-tight">
+                            <div className="flex justify-between items-center p-6 md:p-8 border-b border-paynes/10">
+                                <h2 className="text-2xl md:text-4xl font-display font-bold uppercase tracking-tight">
                                     {selectedPoem.title}
                                 </h2>
                                 <button 
@@ -147,7 +147,7 @@ const Poetry = () => {
                                 </button>
                             </div>
                             
-                            <div className="p-8 overflow-y-auto flex-grow custom-scrollbar">
+                            <div className="p-6 md:p-8 overflow-y-auto flex-grow custom-scrollbar">
                                 {isLoading ? (
                                     <div className="flex flex-col items-center justify-center py-20 opacity-30">
                                         <div className="w-8 h-8 border-4 border-current border-t-transparent rounded-full animate-spin mb-4" />

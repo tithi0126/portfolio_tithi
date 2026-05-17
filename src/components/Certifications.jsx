@@ -14,23 +14,23 @@ const CertificationRow = React.forwardRef(({ cert, index }, ref) => (
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.05, duration: 0.5 }}
-        className="group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-paynes/5 hover:bg-paynes/5 transition-all duration-500 px-4 rounded-xl"
+        className="group flex flex-col md:flex-row md:items-center justify-between py-6 md:py-10 border-b border-paynes/5 hover:bg-paynes/5 transition-all duration-500 px-2 md:px-4 rounded-xl"
     >
-        <div className="flex items-center gap-8 md:col-span-8">
-            <div className="w-12 h-12 rounded-xl bg-paynes/5 flex items-center justify-center group-hover:bg-paynes group-hover:text-pearl transition-colors flex-shrink-0">
-                <Award size={20} className="group-hover:text-pearl transition-colors text-paynes" />
+        <div className="flex items-start md:items-center gap-4 md:gap-8 md:col-span-8">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-paynes/5 flex items-center justify-center group-hover:bg-paynes group-hover:text-pearl transition-colors flex-shrink-0 mt-1 md:mt-0">
+                <Award size={20} className="w-4 h-4 md:w-5 md:h-5 group-hover:text-pearl transition-colors text-paynes" />
             </div>
             <div>
-                <h4 className="text-xl md:text-2xl font-bold tracking-tight mb-1 group-hover:italic transition-all text-paynes">
+                <h4 className="text-lg md:text-2xl font-bold tracking-tight mb-1 group-hover:italic transition-all text-paynes leading-tight">
                     {cert.title}
                 </h4>
-                <div className="text-[10px] uppercase tracking-widest font-bold opacity-30 text-paynes/60">Academic Credential</div>
+                <div className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold opacity-30 text-paynes/60 mt-1">Academic Credential</div>
             </div>
         </div>
 
-        <div className="mt-6 md:mt-0 flex items-center gap-6">
+        <div className="mt-4 md:mt-0 flex items-center gap-6 ml-14 md:ml-0 self-start md:self-auto">
             <Magnetic>
-                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold opacity-40 group-hover:opacity-100 group-hover:text-paynes transition-all">
+                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold opacity-40 group-hover:opacity-100 group-hover:text-paynes transition-all bg-paynes/5 md:bg-transparent px-3 py-1.5 md:px-0 md:py-0 rounded-full md:rounded-none">
                     <span>Verify</span>
                     <ArrowUpRight size={14} />
                 </div>
@@ -87,7 +87,7 @@ const Certifications = () => {
                         Expertise
                     </span>
                 </div>
-                <h3 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.8] text-paynes">
+                <h3 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter uppercase leading-[0.85] md:leading-[0.8] text-paynes">
                     Certified <br /> <span className="opacity-20 italic">Curriculum.</span>
                 </h3>
             </div>

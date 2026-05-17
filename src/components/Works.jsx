@@ -8,7 +8,7 @@ const ProjectRow = ({ project, index, onHover }) => {
     return (
         <Link 
             to={`/project/${project.slug}`} 
-            className="group block border-b border-paynes/10 py-12 relative overflow-hidden"
+            className="group block border-b border-paynes/10 py-8 md:py-12 relative overflow-hidden"
             onMouseEnter={() => onHover(project)}
             onMouseLeave={() => onHover(null)}
         >
@@ -17,8 +17,8 @@ const ProjectRow = ({ project, index, onHover }) => {
             />
             
             <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-4 md:px-8 group-hover:text-pearl transition-colors duration-500">
-                <div className="flex items-center gap-8 md:gap-16 w-full md:w-5/12">
-                    <span className="text-sm font-mono opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-4 md:gap-16 w-full md:w-5/12">
+                    <span className="text-xs md:text-sm font-mono opacity-50 group-hover:opacity-100 transition-opacity mt-1 md:mt-0 self-start md:self-auto">
                         {(index + 1).toString().padStart(2, '0')}
                     </span>
                     <h3 className="text-3xl md:text-6xl font-display font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-500">
@@ -132,9 +132,9 @@ const Works = () => {
     ]
 
     return (
-        <section id="works" className="py-32 bg-transparent text-paynes min-h-screen relative z-10">
+        <section id="works" className="py-20 md:py-32 bg-transparent text-paynes min-h-screen relative z-10">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-                <div className="flex flex-col gap-8 mb-24">
+                <div className="flex flex-col gap-8 mb-12 md:mb-24">
                     <div className="flex items-center gap-6">
                         <div className="h-[1px] w-12 bg-paynes" />
                         <span className="text-paynes text-xs font-bold tracking-[0.5em] uppercase">
@@ -176,7 +176,7 @@ const Works = () => {
                 </AnimatePresence>
             </div>
             
-            <div className="mt-40 flex justify-center">
+            <div className="mt-20 md:mt-40 flex justify-center">
                 <Magnetic>
                     <button className="flex flex-col items-center gap-4 group">
                         <div className="w-10 h-10 rounded-full border border-paynes/10 flex items-center justify-center">

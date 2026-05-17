@@ -82,11 +82,11 @@ const Contact = () => {
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-32">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-32">
                     {/* Left: Contact Form */}
                     <div className="lg:col-span-7">
-                        <form onSubmit={handleSubmit} className="space-y-16">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        <form onSubmit={handleSubmit} className="space-y-12 md:space-y-16">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
                                 <div className="relative">
                                     <input 
                                         type="text" 
@@ -199,12 +199,12 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="mt-32 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-paynes/5 opacity-20 text-[10px] uppercase font-bold tracking-[0.4em]">
-                <div className="flex items-center gap-12">
+            <div className="mt-20 md:mt-32 pt-8 md:pt-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8 border-t border-paynes/5 opacity-20 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.4em]">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
                     <p>&copy; {new Date().getFullYear()} TITHI SHAH</p>
                     <p className="hidden md:block">Human-Centric Engineering</p>
                 </div>
-                <div className="flex items-center gap-12">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
                     <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-paynes transition-colors cursor-pointer">
                         Back to top
                     </button>

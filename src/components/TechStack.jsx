@@ -8,9 +8,9 @@ const SkillGroup = ({ title, skills, icon: Icon, delay = 0 }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay }}
-        className="group p-10 border-b border-paynes/10 hover:bg-paynes/[0.02] transition-all flex flex-col md:flex-row md:items-center justify-between gap-8"
+        className="group p-6 md:p-10 border-b border-paynes/10 hover:bg-paynes/[0.02] transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8"
     >
-        <div className="flex items-center gap-8">
+        <div className="flex items-start md:items-center gap-4 md:gap-8">
             <div className="w-12 h-12 rounded-2xl bg-paynes/5 flex items-center justify-center text-paynes group-hover:bg-paynes group-hover:text-pearl transition-all duration-500">
                 <Icon size={20} />
             </div>
@@ -71,8 +71,8 @@ const TechStack = () => {
     const softSkills = ["Problem-Solving", "Adaptability", "Team Collaboration", "Effective Communication", "Time Management", "Prioritization", "Multitasking"]
 
     return (
-        <section id="tech-stack" className="section-padding bg-transparent text-paynes min-h-screen py-40">
-            <div className="flex flex-col gap-12 mb-32 px-4 md:px-0">
+        <section id="tech-stack" className="section-padding bg-transparent text-paynes min-h-screen py-20 md:py-40">
+            <div className="flex flex-col gap-8 md:gap-12 mb-20 md:mb-32 px-4 md:px-0">
                 <div className="flex items-center gap-6">
                     <div className="h-[1px] w-12 bg-paynes" />
                     <span className="text-paynes text-xs font-bold tracking-[0.5em] uppercase">Architecture & Logic</span>
@@ -94,7 +94,7 @@ const TechStack = () => {
                 ))}
             </div>
 
-            <div className="mt-40 grid grid-cols-1 lg:grid-cols-12 gap-20 px-4 md:px-0">
+            <div className="mt-24 md:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 px-4 md:px-0">
                 <div className="lg:col-span-4 space-y-6">
                     <div className="flex items-center gap-4">
                         <div className="h-px w-8 bg-paynes" />

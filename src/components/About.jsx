@@ -21,7 +21,7 @@ const About = () => {
                 className="absolute -top-40 -right-40 w-96 h-96 bg-paynes/10 rounded-full blur-[120px] pointer-events-none" 
             />
             
-            <div className="flex flex-col gap-32 relative z-10">
+            <div className="flex flex-col gap-16 md:gap-32 relative z-10">
                 {/* Header Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-32 items-end">
                     <div className="lg:col-span-12">
@@ -31,7 +31,7 @@ const About = () => {
                                     Core Philosophy
                                 </span>
                             </Reveal>
-                            <h2 className="text-4xl md:text-7xl lg:text-[7.5rem] font-display font-medium leading-[0.9] tracking-tighter">
+                            <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-[7.5rem] font-display font-medium leading-[1.1] md:leading-[0.9] tracking-tighter">
                                 <TextReveal text="BRIDGING THE GAP BETWEEN TECHNICAL RIGOR AND VISUAL POETRY." />
                             </h2>
                         </div>
@@ -67,9 +67,9 @@ const About = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.3 + i * 0.1, duration: 0.8 }}
-                                    className="p-10 border border-paynes/5 hover:bg-paynes/5 transition-all duration-500 group"
+                                    className="p-6 md:p-10 border border-paynes/5 hover:bg-paynes/5 transition-all duration-500 group"
                                 >
-                                    <h4 className="text-xs uppercase tracking-[0.4em] font-bold mb-4 opacity-30 group-hover:opacity-100 group-hover:italic transition-all">
+                                    <h4 className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-4 opacity-30 group-hover:opacity-100 group-hover:italic transition-all">
                                         {`0${i + 1} — ${skill.title}`}
                                     </h4>
                                     <p className="text-xl font-light leading-relaxed text-paynes/60 group-hover:text-paynes transition-colors">
