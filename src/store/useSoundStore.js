@@ -22,23 +22,46 @@ const useSoundStore = create((set, get) => ({
         { title: 'Ram Ratan Dhan Payo', file: '1]ram_ratan_dhan_payo.mp3', artist: 'Tithi Shah', category: 'Devotional' },
         { title: 'Sajni Re', file: '1]sajni_re.mp3', artist: 'Tithi Shah', category: 'Independent' },
 
-        // Group 3
-        // { title: 'Mora Saiyaan', file: '3]Mora_Saiyaan.mp3', artist: 'Tithi Shah', category: 'Classical' },
-        { title: 'Aaj Din Chadheya', file: '3]aaj_din_chadheya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        // { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Main Rahu Ya Na Rahu', file: '3]main_rahu_ya_na_rahu.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Savan Beeto Jai', file: '3]savan_beeto_jai.mp3', artist: 'Tithi Shah', category: 'Classical' },
-        { title: 'Tere Hawale', file: '3]tere_hawale.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Tu Aisa Kese Hai', file: '3]tu_aisa_kese_hai.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Tum Tak', file: '3]tumtak.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-
         // Group 2
         { title: 'Aapki Akho Me Kuch', file: '2]apki_akho_me kuch.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Dagabaaz Re', file: '2]dagabaazre.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Dekha Hazaro Dafa', file: '2]dekha_hazaro_dafa.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Kaise Ab Kahe', file: '2]kaise_ab_kahe.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Ye Dil Tum Bin', file: '2]ye_dil_tum_bin.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Saiyaara', file: 'Saiyaara.mp3', artist: 'Tithi Shah', category: 'Bollywood' }
+
+        // Group 3
+        { title: 'Mora Saiyaan', file: '3]Mora_Saiyaan.mp3', artist: 'Tithi Shah', category: 'Classical' },
+        { title: 'Aaj Din Chadheya', file: '3]aaj_din_chadheya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Main Rahu Ya Na Rahu', file: '3]main_rahu_ya_na_rahu.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Savan Beeto Jai', file: '3]savan_beeto_jai.mp3', artist: 'Tithi Shah', category: 'Classical' },
+        { title: 'Tere Hawale', file: '3]tere_hawale.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Tu Aisa Kese Hai', file: '3]tu_aisa_kese_hai.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Tum Tak', file: '3]tumtak.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+
+        // Additional / Recent Uploads
+        { title: 'Aankhon Mein Teri (Cover)', file: 'Aankhon mein teri cover.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Bairi Piya', file: 'Bairi_piya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Chandaliyo Ugyo Re', file: 'Chandaliyo ugyo re.mp3', artist: 'Tithi Shah', category: 'Folk' },
+        { title: 'Dil Na Janneya', file: 'Dil na janneya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Ghar More Pardesiya', file: 'Ghar more pardesiya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Jeena Jeena', file: 'Jeena jeena.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Mere Humsafar', file: 'Mere humsafar.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Mohe Rang Do Laal', file: 'Mohe rang do laal.mp3', artist: 'Tithi Shah', category: 'Classical' },
+        { title: 'Nazm Nazm', file: 'Nazm nazm.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Noor E Khuda', file: 'Noor e khuda.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Piyu Bole Piya Bole', file: 'Piyu bole piya bole.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Saiyaara', file: 'Saiyaara.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Saiyyan', file: 'Saiyyan.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Shri Krishna Govind', file: 'Shri Krishna Govind.mp3', artist: 'Tithi Shah', category: 'Devotional' },
+        { title: 'Tujhse Naraz Nahi Zindagi', file: 'Tujhse naraz nahi zindagi.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Tum Prem Ho', file: 'Tum prem ho.mp3', artist: 'Tithi Shah', category: 'Devotional' },
+        { title: 'Aaoge Jab Tum', file: 'aaoge jab tum.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Jee Le Zara', file: 'jeele_zara.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Kehna Hi Kya', file: 'kehna hi kya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Kho Gaye Hum Kahan', file: 'kho gaye hum kahan.mp3', artist: 'Tithi Shah', category: 'Independent' },
+        { title: 'Rang Lageya Ishq Da', file: 'rang_lageya_ishq_da.mp3', artist: 'Tithi Shah', category: 'Independent' },
+        { title: 'Sach Keh Raha Hai Dewana', file: 'sach keh raha hai dewana.mp3', artist: 'Tithi Shah', category: 'Bollywood' }
     ],
 
     setIsMuted: (muted) => {
