@@ -32,7 +32,7 @@ const useSoundStore = create((set, get) => ({
         // Group 3
         { title: 'Mora Saiyaan', file: '3]Mora_Saiyaan.mp3', artist: 'Tithi Shah', category: 'Classical' },
         { title: 'Aaj Din Chadheya', file: '3]aaj_din_chadheya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        // { title: 'Dil Da Vasta', file: '3]dil_da_vasta.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Main Rahu Ya Na Rahu', file: '3]main_rahu_ya_na_rahu.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Savan Beeto Jai', file: '3]savan_beeto_jai.mp3', artist: 'Tithi Shah', category: 'Classical' },
         { title: 'Tere Hawale', file: '3]tere_hawale.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
@@ -41,7 +41,7 @@ const useSoundStore = create((set, get) => ({
 
         // Additional / Recent Uploads
         { title: 'Aankhon Mein Teri ', file: 'Aankhon mein teri cover.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
-        { title: 'Bairi Piya', file: 'Bairi_piya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        // { title: 'Bairi Piya', file: 'Bairi_piya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Chandaliyo Ugyo Re', file: 'Chandaliyo ugyo re.mp3', artist: 'Tithi Shah', category: 'Folk' },
         { title: 'Dil Na Janneya', file: 'Dil na janneya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Ghar More Pardesiya', file: 'Ghar more pardesiya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
