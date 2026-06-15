@@ -40,7 +40,7 @@ const useSoundStore = create((set, get) => ({
         { title: 'Tum Tak', file: '3]tumtak.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
 
         // Additional / Recent Uploads
-        { title: 'Aankhon Mein Teri (Cover)', file: 'Aankhon mein teri cover.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
+        { title: 'Aankhon Mein Teri ', file: 'Aankhon mein teri cover.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Bairi Piya', file: 'Bairi_piya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
         { title: 'Chandaliyo Ugyo Re', file: 'Chandaliyo ugyo re.mp3', artist: 'Tithi Shah', category: 'Folk' },
         { title: 'Dil Na Janneya', file: 'Dil na janneya.mp3', artist: 'Tithi Shah', category: 'Bollywood' },
