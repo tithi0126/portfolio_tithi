@@ -43,12 +43,14 @@ const Certifications = () => {
     const [showAll, setShowAll] = useState(false)
 
     const certifications = [
-        { title: 'IIT Bombay e-Yantra Certificate', file: 'E-yantra.png' },
-        { title: 'Innovation Online Course (e-Yantra)', file: 'e-Yantra Online Course on Innovation.pdf' },
-        { title: 'AWS Academy Graduate - ML Foundations', file: 'AWS Machine Learning.pdf' },
+        { title: 'Introduction to Cybersecurity (Cisco)', file: 'cisco_cs.pdf' },
+        { title: 'Introduction to Cybersecurity', file: 'Introduction_to_Cybersecurity_certificate_tithishah26-gmail-com_46335817-1ab1-4c18-ae82-857a688e8c24.pdf' },
         { title: 'Cybersecurity Fundamentals (IBM)', file: 'IBMDesign20260516-31-z0l1no.pdf' },
         { title: 'Fundamentals of Cybersecurity (Accenture)', file: 'Accenture Cybersecurity.png' },
         { title: 'Understanding Google Cloud Security and Operations', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6381513' },
+        { title: 'IIT Bombay e-Yantra Certificate', file: 'E-yantra.png' },
+        { title: 'Innovation Online Course (e-Yantra)', file: 'e-Yantra Online Course on Innovation.pdf' },
+        { title: 'AWS Academy Graduate - ML Foundations', file: 'AWS Machine Learning.pdf' },
         { title: 'Introduction to Responsible AI', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6371611' },
         { title: 'Introduction to Generative AI', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6187089' },
         { title: 'Introduction to Large Language Models', url: 'https://www.skills.google/public_profiles/cc6552e3-a70a-4d74-968d-aa46c07d8ef2/badges/6185201' },
