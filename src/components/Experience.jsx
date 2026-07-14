@@ -75,7 +75,7 @@ const Experience = () => {
 
     const education = [
         { id: 'msc', school: "VNSGU (M.Sc. IT)", period: "July 2025 — Present", note: "Advanced Systems & AI" },
-        { id: 'bsc', school: "VNSGU (B.Sc. IT)", period: "June 2022 — May 2025", note: "GPA: 6.05 | Foundation in DSA & Systems" },
+        { id: 'bsc', school: "VNSGU (B.Sc. IT)", period: "June 2022 — May 2025", note: "Grade: B | Foundation in DSA & Systems" },
         { id: 'hsc', school: "T&TV Sarvajanik (HSC)", period: "June 2021 — Mar 2022", note: "Science-Mathematics" },
         { id: 'ssc', school: "Sanskar Bharti (SSC)", period: "June 2019 — Mar 2020", note: "Secondary Education" }
     ]
