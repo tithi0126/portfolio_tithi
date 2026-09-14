@@ -88,14 +88,13 @@ const AppContent = () => {
             {!loading && (
                 <>
                     <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+                    <CustomCursor />
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: isMenuOpen ? 0 : 1 }}
                         transition={{ duration: 0.5 }}
                         className={isMenuOpen ? 'pointer-events-none' : ''}
                     >
-                        <CustomCursor />
-
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/project/:id" element={<ProjectDetail />} />

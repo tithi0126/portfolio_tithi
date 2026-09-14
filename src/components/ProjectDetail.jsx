@@ -75,14 +75,13 @@ const ProjectDetail = () => {
             url: 'https://designformulastudio.com/',
             description: 'Visually rich portfolio for interior design services. Implemented UX-driven navigation, smooth transitions, and clean typography for premium brand presentation.'
         },
-        'meraki-coffee': {
-            title: 'Meraki Coffee House',
-            category: 'Lifestyle & Cafe',
-            tags: ['Branding', 'Mobile-First', 'Video-Hero', 'Maps'],
-            logo: '/projects/meraki.png',
-            video: '/videos/meraki.mov',
-            url: 'https://meraki.aangandevelopers.com/',
-            description: 'Immersive brand storytelling with video-enhanced hero section. Features a "Brew Explorer" menu and integrated store locator pins for real-world foot traffic.'
+        'sun-and-moon': {
+            title: 'Sun & Moon',
+            category: 'Long-Distance Photobooth',
+            tags: ['Next.js', 'Real-Time', 'WebRTC', 'Canvas API'],
+            logo: '/Sun&Moon.png',
+            url: 'https://photobooth.aangandevelopers.com/',
+            description: 'A long-distance photo booth web app that lets couples and friends capture moments together from anywhere in the world. Built with Next.js featuring real-time camera capture, custom photo strip layouts, and instant sharing capabilities.'
         },
         'pnc': {
             title: 'PNC Nutrition',

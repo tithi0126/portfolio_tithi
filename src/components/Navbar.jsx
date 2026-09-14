@@ -99,10 +99,11 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                         animate={{ clipPath: 'circle(150% at 100% 0%)' }}
                         exit={{ clipPath: 'circle(0% at 100% 0%)' }}
                         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-                        className="fixed inset-0 bg-pearl z-[60] flex flex-col justify-center px-6 md:px-24"
+                        className="fixed inset-0 bg-pearl z-[60] overflow-y-auto"
                     >
-                        <div className="flex flex-col gap-2 md:gap-4 text-paynes pt-20">
-                            <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-8">Navigation</p>
+                        <div className="flex flex-col min-h-full px-6 md:px-24 py-8 md:py-12">
+                            <div className="flex flex-col gap-2 md:gap-4 text-paynes my-auto py-12">
+                                <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-8">Navigation</p>
                             {menuItems.map((item, i) => (
                                 <motion.div
                                     key={item.label}
@@ -115,7 +116,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                             <Link
                                                 to={item.path}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-4xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
                                             >
                                                 {item.label}
                                             </Link>
@@ -123,7 +124,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                             <a
                                                 href={location.pathname === '/' ? `#${item.id}` : `/#${item.id}`}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-4xl md:text-8xl lg:text-9xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
+                                                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold hover:italic transition-all duration-300 inline-block uppercase tracking-[-0.05em] leading-[0.9]"
                                             >
                                                 {item.label}
                                             </a>
@@ -131,14 +132,15 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                     </Magnetic>
                                 </motion.div>
                             ))}
-                        </div>
+                            </div>
 
-                        <div className="absolute bottom-8 md:bottom-12 left-6 md:left-24 right-6 md:right-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 md:gap-12 border-t border-paynes/10 pt-8">
+                        <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 md:gap-12 border-t border-paynes/10 pt-8 shrink-0">
                             <div className="flex flex-col gap-2">
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">Socials</p>
-                                <div className="flex gap-8 text-xs font-bold uppercase tracking-widest">
+                                <div className="flex flex-wrap gap-4 md:gap-8 text-xs font-bold uppercase tracking-widest">
                                     <a href="https://www.linkedin.com/in/tithishah01/" target="_blank" rel="noopener noreferrer" className="hover:italic transition-all">LinkedIn</a>
                                     <a href="https://github.com/tithi0126" target="_blank" rel="noopener noreferrer" className="hover:italic transition-all">GitHub</a>
+                                    <a href="https://www.credly.com/users/tithi-shah.2201" target="_blank" rel="noopener noreferrer" className="hover:italic transition-all">Credly</a>
                                 </div>
                             </div>
                             <div className="text-left md:text-right flex flex-col gap-2">
@@ -146,6 +148,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                                 <p className="text-lg md:text-xl font-display font-bold uppercase">tithishah26@gmail.com</p>
                             </div>
                         </div>
+                    </div>
                     </motion.div>
                 )}
             </AnimatePresence>

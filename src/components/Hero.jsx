@@ -88,7 +88,7 @@ const Hero = () => {
                         variants={item}
                         className="text-lg md:text-2xl text-pearl/60 max-w-xl leading-relaxed font-light"
                     >
-                        Tithi Shah — Full-Stack Developer & UI Architect. Pursuing M.Sc. IT with a focus on immersive systems, high-performance engineering, and minimalist visual poetry.
+                        Software Developer, UI Architect & Digital Forensics Enthusiast. Pursuing M.Sc. IT with a focus on immersive systems, high-performance engineering, incident response, and minimalist visual poetry.
                     </motion.p>
 
                     <motion.div

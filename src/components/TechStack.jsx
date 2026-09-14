@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Cpu, Globe, Smartphone, Database, Command, Shield, Brain, Zap, ArrowUpRight } from 'lucide-react'
+import { Cpu, Globe, Smartphone, Database, Command, Shield, Brain, Zap, ArrowUpRight, Lock } from 'lucide-react'
 
 const SkillGroup = ({ title, skills, icon: Icon, delay = 0 }) => (
     <motion.div 
@@ -32,43 +32,53 @@ const SkillGroup = ({ title, skills, icon: Icon, delay = 0 }) => (
 const TechStack = () => {
     const technicalSkills = [
         {
-            category: "Programming Languages",
+            category: "Cybersecurity",
+            icon: Lock,
+            skills: ["Security Fundamentals", "Vulnerability Assessment", "Network Scanning", "Web Application Security", "OWASP", "API Security", "Secure Authentication (JWT)", "Threat Detection Basics", "Risk Assessment"]
+        },
+        {
+            category: "Security Tools",
+            icon: Shield,
+            skills: ["Wireshark", "Nmap", "Burp Suite", "Metasploit", "Nessus", "Splunk", "Kali Linux"]
+        },
+        {
+            category: "Programming & Scripting",
             icon: Cpu,
-            skills: ["Java", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Kotlin", "PHP", "Swift", "VB.NET", "HTML5", "CSS3"]
+            skills: ["Python", "Bash", "C", "C++", "Java", "JavaScript/TypeScript", "PHP", "C#"]
+        },
+        {
+            category: "Networking & Systems",
+            icon: Zap,
+            skills: ["TCP/IP", "DNS", "HTTP/HTTPS", "Network Security Fundamentals", "Firewalls", "Unix/Linux", "Windows", "Active Directory Fundamentals"]
         },
         {
             category: "Web & Full-Stack",
             icon: Globe,
-            skills: ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "ASP.NET", "REST APIs", "JSON"]
+            skills: ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "REST APIs", "JSON", "ASP.NET Core"]
         },
         {
-            category: "Mobile Development",
-            icon: Smartphone,
-            skills: ["Flutter", "Kotlin (Android)", "Swift (iOS)"]
-        },
-        {
-            category: "Database Management",
+            category: "Databases",
             icon: Database,
-            skills: ["MySQL", "MongoDB", "DBMS", "RDBMS", "Database Design", "Normalization"]
+            skills: ["MySQL", "MongoDB", "DBMS/RDBMS", "Database Design & Normalization", "SQL"]
         },
         {
-            category: "Frameworks & Tools",
-            icon: Command,
-            skills: [".NET Framework", "WordPress", "Figma", "Android Studio", "VS Code", "Arduino Uno", "GitHub"]
-        },
-        {
-            category: "Cloud & Systems",
-            icon: Shield,
-            skills: ["AWS Fundamentals", "Azure Basics", "Unix/Linux", "Windows", "IoT Basics"]
+            category: "Cloud & IoT",
+            icon: Smartphone,
+            skills: ["AWS/Azure Fundamentals", "Cloud Security Fundamentals", "IoT Basics"]
         },
         {
             category: "CS Fundamentals",
             icon: Brain,
-            skills: ["OOP", "DSA", "Computer Networks", "TCP/IP", "DNS", "HTTP", "System Analysis"]
+            skills: ["OOP", "Data Structures & Algorithms", "Computer Networks", "System Analysis & Design"]
+        },
+        {
+            category: "Development & Design Tools",
+            icon: Command,
+            skills: ["Git", "GitHub", "VS Code", "Android Studio", "Figma", "Arduino"]
         }
     ]
 
-    const softSkills = ["Problem-Solving", "Adaptability", "Team Collaboration", "Effective Communication", "Time Management", "Prioritization", "Multitasking"]
+    const softSkills = ["Problem-Solving", "Critical Thinking", "Adaptability", "Communication", "Team Collaboration", "Attention to Detail"]
 
     return (
         <section id="tech-stack" className="section-padding bg-transparent text-paynes min-h-screen py-20 md:py-40">

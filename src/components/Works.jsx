@@ -88,11 +88,11 @@ const Works = () => {
             logo: '/projects/designformula.png',
         },
         {
-            slug: 'meraki-coffee',
-            title: 'Meraki Coffee House',
-            category: 'Lifestyle & Cafe',
-            tags: ['Branding', 'Mobile-First', 'Maps'],
-            logo: '/projects/meraki.png',
+            slug: 'sun-and-moon',
+            title: 'Sun & Moon',
+            category: 'Long-Distance Photobooth',
+            tags: ['Next.js', 'Real-Time', 'WebRTC'],
+            logo: '/Sun&Moon.png',
         },
         {
             slug: 'achyutam-fruitam',

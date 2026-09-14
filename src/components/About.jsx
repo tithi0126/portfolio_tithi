@@ -5,8 +5,9 @@ import { Reveal, TextReveal } from './Reveal'
 const About = () => {
     const skills = [
         { title: "Architecture", desc: "Building scalable, distributed systems with precision and performance at the core." },
+        { title: "Forensics & Incident Response", desc: "Reconstructing timelines from digital evidence, tracing intrusions, and turning chaos into a clear, defensible narrative of what happened and why." },
         { title: "Design", desc: "Crafting immersive visual experiences where every pixel serves a functional purpose." },
-        { title: "Execution", desc: "Turning complex technical challenges into production-ready software solutions." }
+        { title: "Execution", desc: "Turning complex technical challenges — and complex incidents — into resolved, production-ready outcomes." }
     ]
 
     return (
@@ -53,8 +54,8 @@ const About = () => {
                         <Reveal delay={0.5}>
                             <p className="text-2xl md:text-5xl font-light leading-[1.1] text-paynes/70 tracking-tight mb-12 md:mb-20">
                                 My approach to software development is architectural. Like a building, 
-                                a system must be structurally sound, highly performant, and visually 
-                                harmonious. I don't just write code; I design ecosystems.
+                                a system must be structurally sound, resilient against intrusion, and visually 
+                                harmonious — and when something does go wrong, it has to be possible to trace exactly how. I don't just write code; I design ecosystems built to withstand pressure, and I investigate what happens when they don't.
                             </p>
                         </Reveal>
                     </div>

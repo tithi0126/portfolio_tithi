@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Github, Linkedin, Send, User, MessageCircle, Mail as MailIcon } from 'lucide-react'
+import { ArrowUpRight, Github, Linkedin, Send, User, MessageCircle, Mail as MailIcon, Award } from 'lucide-react'
 import Magnetic from './Magnetic'
 import { toast } from 'react-hot-toast'
 
@@ -182,6 +182,11 @@ const Contact = () => {
                                     <Magnetic>
                                         <a href="https://github.com/tithi0126" target="_blank" rel="noopener noreferrer" className="p-6 rounded-full border border-paynes/10 hover:bg-paynes hover:text-pearl transition-all">
                                             <Github size={20} />
+                                        </a>
+                                    </Magnetic>
+                                    <Magnetic>
+                                        <a href="https://www.credly.com/users/tithi-shah.2201" target="_blank" rel="noopener noreferrer" className="p-6 rounded-full border border-paynes/10 hover:bg-paynes hover:text-pearl transition-all">
+                                            <Award size={20} />
                                         </a>
                                     </Magnetic>
                                 </div>
