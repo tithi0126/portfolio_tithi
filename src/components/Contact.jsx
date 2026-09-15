@@ -34,7 +34,7 @@ const Contact = () => {
         const loadingToast = toast.loading('Initiating transmission...')
 
         try {
-            const apiUrl = import.meta.env.VITE_API_URL || 'https://tithishah-backend.onrender.com';
+            const apiUrl = import.meta.env.VITE_API_URL || '';
             const response = await fetch(`${apiUrl}/api/contact`, {
                 method: 'POST',
                 headers: {
@@ -46,12 +46,12 @@ const Contact = () => {
             const data = await response.json()
             
             if (response.ok) {
-                toast.success('Transmission successful. I will reach out shortly.', { id: loadingToast })
+                toast.success(data.message || 'Transmission successful. I will reach out shortly.', { id: loadingToast })
                 setStatus('success')
                 setFormState({ name: '', email: '', subject: '', message: '' })
                 setTimeout(() => setStatus('idle'), 5000)
             } else {
-                throw new Error(data.msg || 'Transmission failed')
+                throw new Error(data.message || data.error || 'Transmission failed')
             }
         } catch (error) {
             console.error('Contact Error:', error)

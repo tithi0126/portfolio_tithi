@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
 const validator = require('validator');
 const Contact = require('../models/Contact');
@@ -67,26 +68,37 @@ router.post('/', contactLimiter, sanitizeBody, async (req, res) => {
     const normalizedEmail = validator.normalizeEmail(email) || email.toLowerCase();
 
     try {
-        // Capture submitter IP for audit trail (stored in DB, never returned to client)
+        // Capture submitter IP for audit trail
         const submitterIp =
             (req.headers['x-forwarded-for'] || '').split(',')[0].trim() ||
             req.socket?.remoteAddress ||
             'unknown';
 
-        const newContact = await Contact.create({
-            name,
-            email: normalizedEmail,
-            subject: subject || '',
-            message,
-            ip: submitterIp,
-        });
+        // Save to MongoDB if connected
+        if (mongoose.connection.readyState === 1) {
+            await Contact.create({
+                name,
+                email: normalizedEmail,
+                subject: subject || '',
+                message,
+                ip: submitterIp,
+            });
+        } else {
+            console.warn('DB not connected: Contact submission logged to server console:', {
+                name,
+                email: normalizedEmail,
+                subject,
+                message,
+                date: new Date().toISOString()
+            });
+        }
 
-        // Fire-and-forget email notification
+        // Fire-and-forget email notification if configured
         sendContactEmail({ name, email: normalizedEmail, subject, message }).catch(err => {
             console.error('Nodemailer Error:', err.message);
         });
 
-        // Return success without echoing back the stored document (avoid data leak)
+        // Return success
         res.status(201).json({
             success: true,
             message: 'Message sent successfully!',

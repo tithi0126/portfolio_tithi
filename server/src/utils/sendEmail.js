@@ -24,6 +24,11 @@ const sendContactEmail = async (contactData) => {
     const safeSubject = escapeHtml(subject || 'No Subject');
     const safeMessage = escapeHtml(message);
 
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        console.warn('⚠️ EMAIL_USER or EMAIL_PASS environment variables are not set. Skipping email dispatch.');
+        return Promise.resolve();
+    }
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {

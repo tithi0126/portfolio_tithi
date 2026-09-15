@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     // Proxy API calls to backend in dev — avoids CORS issues and keeps origin clean
     proxy: {
-      '/api': {
+      '/api/': {
         target: 'http://localhost:3000',
         changeOrigin: true,
         secure: false,

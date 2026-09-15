@@ -77,7 +77,7 @@ app.use(express.urlencoded({ extended: false, limit: '10kb' }));
 app.use('/api/contact', contactRouter);
 
 // Health check — no server fingerprinting
-app.get('/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
     res.json({ status: 'ok' });
 });
 
@@ -96,16 +96,22 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     res.status(500).json({ error: 'Internal server error.' });
 });
 
-// ─── Database Connection ──────────────────────────────────────────────────────
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log('Connected to MongoDB: TithiPortfolio');
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
+// ─── Database Connection & Server Start ───────────────────────────────────────
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://tithishah26:tithi0126@tithiportfolio.ckgfpbg.mongodb.net/?retryWrites=true&w=majority&appName=TithiPortfolio';
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is listening on port ${PORT} (0.0.0.0)`);
+});
+
+if (mongoURI) {
+    mongoose.connect(mongoURI)
+        .then(() => {
+            console.log('✅ Connected to MongoDB: TithiPortfolio');
+        })
+        .catch((err) => {
+            console.error('❌ MongoDB Connection Error:', err.message);
         });
-    })
-    .catch((err) => {
-        console.error('MongoDB Connection Error:', err.message);
-        process.exit(1);
-    });
+} else {
+    console.warn('⚠️ MONGO_URI is not set.');
+}
 
