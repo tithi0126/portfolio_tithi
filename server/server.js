@@ -97,7 +97,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 // ─── Database Connection & Server Start ───────────────────────────────────────
-const mongoURI = process.env.MONGO_URI || 'mongodb+srv://tithishah26:tithi0126@tithiportfolio.ckgfpbg.mongodb.net/?retryWrites=true&w=majority&appName=TithiPortfolio';
+const mongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tithishah';
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is listening on port ${PORT} (0.0.0.0)`);
@@ -106,7 +106,7 @@ app.listen(PORT, '0.0.0.0', () => {
 if (mongoURI) {
     mongoose.connect(mongoURI)
         .then(() => {
-            console.log('✅ Connected to MongoDB: TithiPortfolio');
+            console.log('✅ Connected to MongoDB: tithishah');
         })
         .catch((err) => {
             console.error('❌ MongoDB Connection Error:', err.message);
