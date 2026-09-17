@@ -128,6 +128,43 @@ const Works = () => {
             category: 'Industrial Archive',
             tags: ['B2B', 'Database'],
             logo: '/apil_logo.jpeg',
+        },
+        {
+            slug: 'schmucks-coffee',
+            title: 'Schmucks Coffee House',
+            category: 'E-Commerce App',
+            tags: ['Flutter', 'Provider'],
+        },
+        {
+            slug: 'gharsathi',
+            title: 'GharSathi',
+            category: 'Home Services',
+            tags: ['Flutter', 'UI/UX'],
+        },
+        {
+            slug: 'healthmatters',
+            title: 'HealthMatters',
+            category: 'Wellness Platform',
+            tags: ['MERN', 'React'],
+        },
+        {
+            slug: 'the-cheelaya',
+            title: 'The Cheelaya',
+            category: 'Production Website',
+            tags: ['Web', 'SEO'],
+            logo: '/thecheelaya1.png',
+        },
+        {
+            slug: 'nids',
+            title: 'NIDS',
+            category: 'Cybersecurity',
+            tags: ['Security', 'Networking'],
+        },
+        {
+            slug: 'crm-system',
+            title: 'CRM System',
+            category: 'Management Software',
+            tags: ['CRM', 'System'],
         }
     ]
 
@@ -161,7 +198,7 @@ const Works = () => {
             {/* Ambient Logo glow in background based on hover */}
             <div className="hidden lg:block pointer-events-none fixed inset-0 z-[-1] overflow-hidden">
                 <AnimatePresence>
-                    {hoveredProject && (
+                    {hoveredProject && hoveredProject.logo && (
                         <motion.div
                             key="hover-img"
                             initial={{ opacity: 0, scale: 0.8 }}

@@ -127,6 +127,45 @@ const ProjectDetail = () => {
             video: '/videos/aipl_demo.mov',
             url: 'https://www.abhishekispat.com/',
             description: 'Corporate B2B platform for Abhishek Ispat, highlighting specialized manufacturing workflows and diverse client requirements.'
+        },
+        'schmucks-coffee': {
+            title: 'Schmucks Coffee House',
+            category: 'E-Commerce App',
+            tags: ['Flutter', 'Dart', 'Provider', 'Auth'],
+            description: 'Developed a high-fidelity Flutter app featuring a Comic Book UI, with phone-based OTP authentication and persistent session storage. Built an interactive coffee catalog and customisation system (cup sizes, sweetness, milk alternatives, dynamic pricing), plus cart, discounts and order history, using a feature-first modular architecture with Provider state management.'
+        },
+        'gharsathi': {
+            title: 'GharSathi',
+            category: 'Home Services App',
+            tags: ['Flutter', 'Dart', 'UI/UX'],
+            description: 'Developed a Flutter-based home-services marketplace enabling users to discover, filter, select and book household services end-to-end. Built an interactive UI with animations, carousels and flip cards, and modular route-based navigation across authentication, dashboard, booking and confirmation screens.'
+        },
+        'healthmatters': {
+            title: 'HealthMatters',
+            category: 'Wellness Platform',
+            tags: ['MERN', 'React', 'WhatsApp API'],
+            description: 'Developed a full-stack wellness platform spanning Diet & Nutrition, Mental Wellbeing, and Yoga & Exercise, with self-check tools and session booking. Built the React front end with reusable components and client-side routing, and integrated WhatsApp-based community engagement and booking workflows.'
+        },
+
+        'the-cheelaya': {
+            title: 'The Cheelaya',
+            category: 'Production Website',
+            tags: ['Web', 'SEO', 'Responsive'],
+            url: 'https://the-cheelaya.onrender.com',
+            logo: '/thecheelaya1.png',
+            description: 'Designed and delivered a responsive, SEO-optimised production website with secure backend form handling.'
+        },
+        'nids': {
+            title: 'Network Intrusion Detection System',
+            category: 'Cybersecurity',
+            tags: ['Networking', 'Security', 'Threat Detection'],
+            description: 'A network monitoring tool applying threat-detection concepts to flag suspicious traffic patterns.'
+        },
+        'crm-system': {
+            title: 'CRM System',
+            category: 'Management Software',
+            tags: ['CRM', 'Management', 'System'],
+            description: 'A system for tracking and managing customer interactions, records and follow-ups.'
         }
     }
 

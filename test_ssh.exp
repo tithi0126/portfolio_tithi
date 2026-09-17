@@ -1,0 +1,6 @@
+#!/usr/bin/expect -f
+set timeout 10
+spawn ssh -o StrictHostKeyChecking=no root@72.60.100.241 "ls -d /var/www/vhosts/*"
+expect "password:"
+send "1st@ToStayHappy\r"
+expect eof
